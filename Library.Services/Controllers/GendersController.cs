@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Library.Core.Entities;
 using Library.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace Library.Services.Controllers
 {
@@ -16,14 +17,16 @@ namespace Library.Services.Controllers
     public class GendersController : ApiBaseController<Gender, Guid>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GendersController"/> class.
+        /// Initializes a new instance of the <see cref="GendersController" /> class.
         /// </summary>
         /// <param name="queryRepository">The query repository.</param>
         /// <param name="commandRepository">The command repository.</param>
+        /// <param name="logger">The logger.</param>
         public GendersController(
             IQueryRepository<Gender, Guid> queryRepository,
-            ICommandRepository<Gender, Guid> commandRepository)
-            : base(queryRepository, commandRepository)
+            ICommandRepository<Gender, Guid> commandRepository,
+            ILogger<GendersController> logger)
+            : base(queryRepository, commandRepository, logger)
         {
         }
 

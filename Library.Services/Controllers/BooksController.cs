@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Library.Core.Entities;
 using Library.Core.Interfaces;
+using Microsoft.Extensions.Logging;
 
 namespace Library.Services.Controllers
 {
@@ -11,8 +12,9 @@ namespace Library.Services.Controllers
     {
         public BooksController(
             IQueryRepository<Book, Guid> queryRepository,
-            ICommandRepository<Book, Guid> commandRepository)
-            : base(queryRepository, commandRepository)
+            ICommandRepository<Book, Guid> commandRepository,
+            ILogger<BooksController> logger)
+            : base(queryRepository, commandRepository, logger)
         {
         }
 

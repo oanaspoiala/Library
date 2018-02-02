@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="nlog.config" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
@@ -19,8 +23,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="nlog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Data.Domain\Library.Domain.Persistence\Library.Persistence.csproj" />
     <ProjectReference Include="..\Data.Infra\Library.Buisness.csproj" />
+    <ProjectReference Include="..\Library.System\Library.System.csproj" />
   </ItemGroup>
 
 </Project>

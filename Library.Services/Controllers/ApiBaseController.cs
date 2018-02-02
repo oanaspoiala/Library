@@ -2,6 +2,7 @@
 using Library.Core.Entities;
 using Library.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace Library.Services.Controllers
 {
@@ -9,13 +10,17 @@ namespace Library.Services.Controllers
     {
         protected readonly IQueryRepository<T, TId> QueryRepository;
         protected readonly ICommandRepository<T, TId> CommandRepository;
+        protected readonly ILogger logger;
 
         protected ApiBaseController(
             IQueryRepository<T, TId> queryRepository,
-            ICommandRepository<T, TId> commandRepository)
+            ICommandRepository<T, TId> commandRepository,
+            ILogger<ApiBaseController<T, TId>> logger)
         {
             QueryRepository = queryRepository;
             CommandRepository = commandRepository;
+            this.logger = logger;
+            this.logger.LogInformation("ApiBaseController constructed");
         }
 
         /// <summary>
