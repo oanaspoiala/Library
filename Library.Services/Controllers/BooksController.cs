@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Library.Services.Controllers
 {
-    [Route("api/Books")]
+    [Route("[controller]")]
     public class BooksController : ApiBaseController<Book, Guid>
     {
         public BooksController(

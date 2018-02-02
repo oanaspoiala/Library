@@ -1,4 +1,5 @@
-﻿using Library.System.Libs;
+﻿using Library.Presentation.Filters;
+using Library.System.Libs;
 using Library.System.Libs.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -23,7 +24,9 @@ namespace Library.Presentation
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IWebApiHelper, WebApiHelper>();
-            services.AddMvc();
+            services.AddMvc(config =>
+                config.Filters.Add(typeof(LibraryPresentationExceptionFilter))
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

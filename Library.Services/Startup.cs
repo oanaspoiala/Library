@@ -1,5 +1,6 @@
 ﻿using Library.Buisness;
 using Library.Persistence;
+using Library.Services.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -47,12 +48,15 @@ namespace Library.Services
                         Title = ".NET Core Library API",
                         Description = "ASP.NET Core",
                         TermsOfService = "None",
-                        Contact = new Contact { Name = "Oana Spoiala", Url = "" },
-                        License = new License { Name = "MIT", Url = "https://en.wikipedia.org/wiki/MIT_License" }
+                        Contact = new Contact {Name = "Oana Spoiala", Url = ""},
+                        License = new License {Name = "MIT", Url = "https://en.wikipedia.org/wiki/MIT_License"}
                     });
             });
 
-            services.AddMvc();
+            services.AddMvc(config =>
+            {
+                config.Filters.Add(typeof(LibraryServicesExceptionFilter));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,6 +69,7 @@ namespace Library.Services
         {
             loggerFactory.AddNLog();
             env.ConfigureNLog("nlog.config");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

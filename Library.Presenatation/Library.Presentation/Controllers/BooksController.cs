@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using EnsureThat;
 using Library.Core.Entities;
 using Library.System.Libs.Interfaces;
 using Microsoft.AspNetCore.Http;
@@ -25,6 +26,7 @@ namespace Library.Presentation.Controllers
         {
             var response = await _web.Get(apiUrl);
             var items = await response.Content.ReadAsStringAsync();
+            EnsureArg.IsNotNullOrEmpty(items);
             return View(JsonConvert.DeserializeObject<IEnumerable<Book>>(items));
         }
 
