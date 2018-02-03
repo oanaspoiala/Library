@@ -1,6 +1,7 @@
 ﻿using Library.Buisness;
 using Library.Persistence;
 using Library.Services.Filters;
+using Library.Services.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -75,6 +76,7 @@ namespace Library.Services
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseMiddleware<LoggingMiddleware>();
 
             // Enable middleware to serve generated Swagger as a JSON endpoint
             app.UseSwagger();
