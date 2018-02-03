@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -54,10 +55,7 @@ namespace Library.System.Libs
         public async Task<HttpResponseMessage> Get(string url)
         {
             var response = await client.GetAsync(url);
-            if (response.StatusCode == HttpStatusCode.Unauthorized)
-            {
-                //TODO: Get JWT Token from Identity server
-            }
+            await ValidateResponse(response);
             return response;
         }
 
@@ -70,7 +68,9 @@ namespace Library.System.Libs
         public async Task<HttpResponseMessage> Post(string url, string data)
         {
             var content = new StringContent(data, Encoding.UTF8, "application/json");
-            return await client.PostAsync(url, content);
+            var response =  await client.PostAsync(url, content);
+            await ValidateResponse(response);
+            return response;
         }
 
         /// <summary>
@@ -82,7 +82,9 @@ namespace Library.System.Libs
         public async Task<HttpResponseMessage> Put(string url, string data)
         {
             var content = new StringContent(data, Encoding.UTF8, "application/json");
-            return await client.PutAsync(url, content);
+            var response = await client.PutAsync(url, content);
+            await ValidateResponse(response);
+            return response;
         }
 
         /// <summary>
@@ -92,7 +94,9 @@ namespace Library.System.Libs
         /// <returns></returns>
         public async Task<HttpResponseMessage> Delete(string url)
         {
-            return await client.DeleteAsync(url);
+            var response = await client.DeleteAsync(url);
+            await ValidateResponse(response);
+            return response;
         }
 
         /// <summary>
@@ -104,6 +108,23 @@ namespace Library.System.Libs
             if (client.DefaultRequestHeaders.Any(i => i.Key == key))
             {
                 client.DefaultRequestHeaders.Remove(key);
+            }
+        }
+
+        private static async Task ValidateResponse(HttpResponseMessage response)
+        {
+            if (!response.IsSuccessStatusCode)
+            {
+                switch (response.StatusCode)
+                {
+                    case HttpStatusCode.Unauthorized:
+                    case HttpStatusCode.Forbidden:
+                        throw new UnauthorizedAccessException(await response.Content.ReadAsStringAsync());
+                    case HttpStatusCode.UnsupportedMediaType:
+                        throw new ArgumentException(await response.Content.ReadAsStringAsync());
+                    default:
+                        throw new WebException(await response.Content.ReadAsStringAsync());
+                }
             }
         }
     }

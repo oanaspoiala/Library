@@ -7,12 +7,12 @@ using IMiddleware = Library.System.Libs.Interfaces.IMiddleware;
 
 namespace Library.Services.Middleware
 {
-    public class LoggingMiddleware : IMiddleware
+    public class AuthMiddleware : IMiddleware
     {
         public RequestDelegate _next { get; set; }
         private readonly ILogger _logger;
 
-        public LoggingMiddleware(RequestDelegate next, ILogger<LoggingMiddleware> logger)
+        public AuthMiddleware(RequestDelegate next, ILogger<AuthMiddleware> logger)
         {
             _next = next;
             _logger = logger;
@@ -21,6 +21,22 @@ namespace Library.Services.Middleware
         public async Task Invoke(HttpContext context)
         {
             _logger.LogInformation(context.Request.GetUri().ToString());
+
+            if (string.Compare(context.Request.GetUri().Segments[1], "swagger/", StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                await _next(context);
+                return;
+            }
+
+            //if (!context.Request.Headers.ContainsKey("Authorization"))
+            //{
+            //    context.Response.StatusCode = 401; //UnAuthorized
+            //    await context.Response.WriteAsync("Missing authorization header");
+            //    return;
+            //}
+
+
+
             await _next(context);
         }
     }

@@ -2,12 +2,14 @@
 using System.Threading.Tasks;
 using Library.Core.Entities;
 using Library.Core.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace Library.Services.Controllers
 {
     [Route("[controller]")]
+    //[Authorize(Policy = "ServiceAgent")]
     public class AuthorsController : ApiBaseController<Author, Guid>
     {
         public AuthorsController(
@@ -29,7 +31,7 @@ namespace Library.Services.Controllers
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        /// <exception cref="System.NotImplementedException"></exception>
+        /// <exception cref="NotImplementedException"></exception>
         [HttpGet("{id}")]
         public override async Task<IActionResult> Get(Guid id)
         {
@@ -40,7 +42,7 @@ namespace Library.Services.Controllers
         /// Gets all.
         /// </summary>
         /// <returns></returns>
-        /// <exception cref="System.NotImplementedException"></exception>
+        /// <exception cref="NotImplementedException"></exception>
         [HttpGet]
         public override async Task<IActionResult> GetAll()
         {
@@ -52,7 +54,7 @@ namespace Library.Services.Controllers
         /// </summary>
         /// <param name="item">The item.</param>
         /// <returns></returns>
-        /// <exception cref="System.NotImplementedException"></exception>
+        /// <exception cref="NotImplementedException"></exception>
         [HttpPut]
         public override async Task<IActionResult> Update([FromBody]Author item)
         {

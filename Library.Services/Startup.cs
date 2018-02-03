@@ -2,11 +2,13 @@
 using Library.Persistence;
 using Library.Services.Filters;
 using Library.Services.Middleware;
+using Library.System.Security;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using NLog.Extensions.Logging;
 using NLog.Web;
 using Swashbuckle.AspNetCore.Swagger;
@@ -52,12 +54,16 @@ namespace Library.Services
                         Contact = new Contact {Name = "Oana Spoiala", Url = ""},
                         License = new License {Name = "MIT", Url = "https://en.wikipedia.org/wiki/MIT_License"}
                     });
+                options.OperationFilter<AddRequiredHeaderParameter>();
             });
 
             services.AddMvc(config =>
             {
                 config.Filters.Add(typeof(LibraryServicesExceptionFilter));
             });
+
+            services.ConfigureJwtAuthentication(Configuration);
+            services.ConfigureAuthorization(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,6 +72,7 @@ namespace Library.Services
         /// </summary>
         /// <param name="app">The application.</param>
         /// <param name="env">The env.</param>
+        /// <param name="loggerFactory">The logger factory.</param>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddNLog();
@@ -76,7 +83,7 @@ namespace Library.Services
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMiddleware<LoggingMiddleware>();
+            app.UseMiddleware<AuthMiddleware>();
 
             // Enable middleware to serve generated Swagger as a JSON endpoint
             app.UseSwagger();
