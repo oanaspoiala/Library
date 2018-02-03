@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using EnsureThat;
 using Library.Core.Entities;
 using Library.System.Libs.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -39,7 +39,6 @@ namespace Library.Presentation.Controllers
             }
 
             var response = await _web.Get($"{apiUrl}/{id.Value.ToString()}");
-
             return View(JsonConvert.DeserializeObject<Book>(await response.Content.ReadAsStringAsync()));
         }
 
@@ -52,7 +51,7 @@ namespace Library.Presentation.Controllers
         // POST: Books/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AuthorId, Title, Year, Isbn,GenderId, Id")] Book book)
+        public async Task<IActionResult> Create([Bind("Author, Title, Year, Isbn,Gender, Id")] Book book)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +81,7 @@ namespace Library.Presentation.Controllers
         // POST: Books/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Title,Year, Isbn, Id")] Book book)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Author,Title,Year, Isbn, Gender, Id")] Book book)
         {
             if (id != book.Id)
             {
