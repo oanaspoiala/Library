@@ -23,8 +23,8 @@ namespace Library.System.Security
                 options =>
                 {
                     options.AddPolicy(
-                        "ServiceAgent",
-                        policy => policy.RequireAuthenticatedUser());
+                        "Authenticated",
+                        policy => policy.RequireClaim("name"));
                 });
 
             return services;

@@ -2,14 +2,13 @@
 using System.Threading.Tasks;
 using Library.Core.Entities;
 using Library.Core.Interfaces;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace Library.Services.Controllers
 {
     [Route("[controller]")]
-    //[Authorize(Policy = "ServiceAgent")]
+    //[Authorize(Policy = "Authenticated")]
     public class AuthorsController : ApiBaseController<Author, Guid>
     {
         public AuthorsController(

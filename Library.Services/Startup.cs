@@ -2,13 +2,15 @@
 using Library.Persistence;
 using Library.Services.Filters;
 using Library.Services.Middleware;
+using Library.System;
 using Library.System.Security;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
 using NLog.Extensions.Logging;
 using NLog.Web;
 using Swashbuckle.AspNetCore.Swagger;
@@ -56,14 +58,19 @@ namespace Library.Services
                     });
                 options.OperationFilter<AddRequiredHeaderParameter>();
             });
+            services.ConfigureLibrarySystem(Configuration);
+            services.ConfigureLibrarySecurity(Configuration);
+            services.ConfigureJwtAuthentication(Configuration);
+            services.ConfigureAuthorization(Configuration);
 
             services.AddMvc(config =>
             {
+                //var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+                //config.Filters.Add(new AuthorizeFilter(policy));
                 config.Filters.Add(typeof(LibraryServicesExceptionFilter));
             });
 
-            services.ConfigureJwtAuthentication(Configuration);
-            services.ConfigureAuthorization(Configuration);
+            services.AddMemoryCache();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

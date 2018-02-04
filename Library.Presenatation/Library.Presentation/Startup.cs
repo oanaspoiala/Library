@@ -1,4 +1,5 @@
 ﻿using Library.Presentation.Filters;
+using Library.System;
 using Library.System.Libs;
 using Library.System.Libs.Interfaces;
 using Microsoft.AspNetCore.Builder;
@@ -23,7 +24,10 @@ namespace Library.Presentation
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.ConfigureLibrarySystem(Configuration);
+
             services.AddTransient<IWebApiHelper, WebApiHelper>();
+
             services.AddMvc(config =>
                 config.Filters.Add(typeof(LibraryPresentationExceptionFilter))
             );

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Library.Core.Entities;
 using Library.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -6,12 +7,24 @@ using Microsoft.Extensions.Logging;
 
 namespace Library.Services.Controllers
 {
+    /// <summary>
+    /// ApiBaseController
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="TId">The type of the identifier.</typeparam>
+    /// <seealso cref="Microsoft.AspNetCore.Mvc.Controller" />
     public abstract class ApiBaseController<T, TId> : Controller where T: EntityWithId<TId>
     {
         protected readonly IQueryRepository<T, TId> QueryRepository;
         protected readonly ICommandRepository<T, TId> CommandRepository;
         protected readonly ILogger logger;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApiBaseController{T, TId}"/> class.
+        /// </summary>
+        /// <param name="queryRepository">The query repository.</param>
+        /// <param name="commandRepository">The command repository.</param>
+        /// <param name="logger">The logger.</param>
         protected ApiBaseController(
             IQueryRepository<T, TId> queryRepository,
             ICommandRepository<T, TId> commandRepository,
@@ -20,7 +33,6 @@ namespace Library.Services.Controllers
             QueryRepository = queryRepository;
             CommandRepository = commandRepository;
             this.logger = logger;
-            this.logger.LogInformation("ApiBaseController constructed");
         }
 
         /// <summary>
@@ -28,7 +40,7 @@ namespace Library.Services.Controllers
         /// </summary>
         /// <param name="item">The item.</param>
         /// <returns></returns>
-        /// <exception cref="System.NotImplementedException"></exception>
+        /// <exception cref="NotImplementedException"></exception>
         public virtual async Task<IActionResult> Create(T item)
         {
             var response = await CommandRepository.Add(item);
@@ -40,7 +52,7 @@ namespace Library.Services.Controllers
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        /// <exception cref="System.NotImplementedException"></exception>
+        /// <exception cref="NotImplementedException"></exception>
         public virtual async Task<IActionResult> Get(TId id)
         {
             var response = await QueryRepository.GetById(id);
@@ -51,7 +63,7 @@ namespace Library.Services.Controllers
         /// Gets all.
         /// </summary>
         /// <returns></returns>
-        /// <exception cref="System.NotImplementedException"></exception>
+        /// <exception cref="NotImplementedException"></exception>
         public virtual async Task<IActionResult> GetAll()
         {
             var response = await QueryRepository.GetAll();
@@ -63,7 +75,7 @@ namespace Library.Services.Controllers
         /// </summary>
         /// <param name="item">The item.</param>
         /// <returns></returns>
-        /// <exception cref="System.NotImplementedException"></exception>
+        /// <exception cref="NotImplementedException"></exception>
         public virtual async Task<IActionResult> Update(T item)
         {
             await CommandRepository.Update(item);
@@ -75,7 +87,7 @@ namespace Library.Services.Controllers
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        /// <exception cref="System.NotImplementedException"></exception>
+        /// <exception cref="NotImplementedException"></exception>
         public virtual async Task<IActionResult> Delete(TId id)
         {
             await CommandRepository.Delete(id);
