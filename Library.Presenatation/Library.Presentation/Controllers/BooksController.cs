@@ -6,6 +6,7 @@ using EnsureThat;
 using Library.Core.Entities;
 using Library.System.Libs.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
@@ -14,11 +15,17 @@ namespace Library.Presentation.Controllers
     public class BooksController : Controller
     {
         private static string apiUrl = "http://localhost:54864/Books";
+        private static string gendersApiUrl = "http://localhost:54864/Genders";
+        private static string authorsApiUrl = "http://localhost:54864/Authors";
+        private SelectList _gendersSelectList;
+        private SelectList _authorsSelectList;
         private readonly IWebApiHelper _web;
 
         public BooksController(IWebApiHelper web)
         {
             _web = web;
+            var task = GetDropDownLists();
+            task.Wait();
         }
 
         //GET:Books
@@ -45,13 +52,15 @@ namespace Library.Presentation.Controllers
         // GET: Books/Create
         public IActionResult Create()
         {
+            ViewData["GenderId"] = _gendersSelectList;
+            ViewData["AuthorId"] = _authorsSelectList;
             return View();
         }
 
         // POST: Books/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Author, Title, Year, Isbn,Gender, Id")] Book book)
+        public async Task<IActionResult> Create([Bind("AuthorId, Title, Year, Isbn,GenderId, Id")] Book book)
         {
             if (ModelState.IsValid)
             {
@@ -75,13 +84,15 @@ namespace Library.Presentation.Controllers
             {
                 return NotFound();
             }
+            ViewData["GenderId"] = _gendersSelectList;
+            ViewData["AuthorId"] = _authorsSelectList;
             return View(book);
         }
 
         // POST: Books/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Author,Title,Year, Isbn, Gender, Id")] Book book)
+        public async Task<IActionResult> Edit(Guid id, [Bind("AuthorId,Title,Year, Isbn, GenderId, Id")] Book book)
         {
             if (id != book.Id)
             {
@@ -139,6 +150,21 @@ namespace Library.Presentation.Controllers
             var response = await _web.Get($"{apiUrl}/{id.ToString()}");
             var book = JsonConvert.DeserializeObject<Book>(await response.Content.ReadAsStringAsync());
             return book != null;
+        }
+
+        private async Task GetDropDownLists()
+        {
+            var response = await _web.Get(gendersApiUrl);
+            if (response.IsSuccessStatusCode)
+            {
+                _gendersSelectList = new SelectList(JsonConvert.DeserializeObject<IEnumerable<Gender>>(await response.Content.ReadAsStringAsync()), "Id", "Name");
+            }
+
+            response = await _web.Get(authorsApiUrl);
+            if (response.IsSuccessStatusCode)
+            {
+                _authorsSelectList = new SelectList(JsonConvert.DeserializeObject<IEnumerable<Author>>(await response.Content.ReadAsStringAsync()), "Id", "FullName");
+            }
         }
     }
 }

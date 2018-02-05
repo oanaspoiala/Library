@@ -1,4 +1,5 @@
-﻿@model Library.Core.Entities.Book
+﻿
+@model Library.Core.Entities.Book
 
 @{
     ViewData["Title"] = "Edit";
@@ -14,9 +15,8 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Author" class="control-label"></label>
-                @*<input asp-for="AuthorId" class="form-control" />*@
-                <select asp-for="Author" class="form-control" asp-items="@(new SelectList(ViewBag.ListofAuthor, "Author", "Name"))"></select>
-                <span asp-validation-for="Author" class="text-danger"></span>
+                <select asp-for="AuthorId" class="form-control" asp-items="ViewBag.AuthorId"></select>
+                <span asp-validation-for="AuthorId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>
@@ -35,9 +35,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="Gender" class="control-label"></label>
-                @*<input asp-for="GenderId" class="form-control" />*@
-                <select asp-for="Gender" class="form-control" asp-items="ViewBag.Gender"></select>
-                <span asp-validation-for="Gender" class="text-danger"></span>
+                <select asp-for="GenderId" class="form-control" asp-items="ViewBag.GenderId"></select>
+                <span asp-validation-for="GenderId" class="text-danger"></span>
             </div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">

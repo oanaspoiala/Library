@@ -4,13 +4,12 @@ using Library.Services.Filters;
 using Library.Services.Middleware;
 using Library.System;
 using Library.System.Security;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using NLog.Extensions.Logging;
 using NLog.Web;
 using Swashbuckle.AspNetCore.Swagger;
@@ -68,6 +67,8 @@ namespace Library.Services
                 //var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
                 //config.Filters.Add(new AuthorizeFilter(policy));
                 config.Filters.Add(typeof(LibraryServicesExceptionFilter));
+            }).AddJsonOptions(options => {
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
 
             services.AddMemoryCache();
