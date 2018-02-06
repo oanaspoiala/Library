@@ -9,17 +9,29 @@ using Newtonsoft.Json;
 
 namespace Library.Presentation.Controllers
 {
+    /// <summary>
+    /// GendersController
+    /// </summary>
+    /// <seealso cref="Microsoft.AspNetCore.Mvc.Controller" />
     public class GendersController : Controller
     {
         private static string apiUrl = "http://localhost:54864/Genders";
         private readonly IWebApiHelper _web;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GendersController"/> class.
+        /// </summary>
+        /// <param name="web">The web.</param>
         public GendersController(IWebApiHelper web)
         {
             _web = web;
         }
 
         // GET: Genders
+        /// <summary>
+        /// Indexes this instance.
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> Index()
         {
             var response = await _web.Get(apiUrl);
@@ -28,6 +40,11 @@ namespace Library.Presentation.Controllers
         }
 
         // GET: Genders/Details/5
+        /// <summary>
+        /// Detailses the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -41,12 +58,21 @@ namespace Library.Presentation.Controllers
         }
 
         // GET: Genders/Create
-        public async Task<IActionResult> Create()
+        /// <summary>
+        /// Creates this instance.
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult Create()
         {
             return View();
         }
 
         // POST: Genders/Create
+        /// <summary>
+        /// Creates the specified gender.
+        /// </summary>
+        /// <param name="gender">The gender.</param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Name,Id")] Gender gender)
@@ -61,6 +87,11 @@ namespace Library.Presentation.Controllers
         }
 
         // GET: Genders/Edit/5
+        /// <summary>
+        /// Edits the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -77,9 +108,15 @@ namespace Library.Presentation.Controllers
         }
 
         // POST: Genders/Edit/5
+        /// <summary>
+        /// Edits the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="gender">The gender.</param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Name,Id")] Gender gender)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Name, Id")] Gender gender)
         {
             if (id != gender.Id)
             {
@@ -105,6 +142,11 @@ namespace Library.Presentation.Controllers
         }
 
         // GET: Genders/Delete/5
+        /// <summary>
+        /// Deletes the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -124,6 +166,11 @@ namespace Library.Presentation.Controllers
         }
 
         // POST: Genders/Delete/5
+        /// <summary>
+        /// Deletes the confirmed.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)

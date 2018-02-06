@@ -17,7 +17,7 @@ namespace Library.Services.Controllers
     {
         protected readonly IQueryRepository<T, TId> QueryRepository;
         protected readonly ICommandRepository<T, TId> CommandRepository;
-        protected readonly ILogger logger;
+        protected readonly ILogger Logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiBaseController{T, TId}"/> class.
@@ -32,7 +32,7 @@ namespace Library.Services.Controllers
         {
             QueryRepository = queryRepository;
             CommandRepository = commandRepository;
-            this.logger = logger;
+            Logger = logger;
         }
 
         /// <summary>

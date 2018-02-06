@@ -8,30 +8,27 @@ using Microsoft.Extensions.Logging;
 namespace Library.Services.Controllers
 {
     /// <summary>
-    /// GendersController
+    /// PeopleController
     /// </summary>
-    /// <seealso>
-    ///     <cref>Library.Services.Controllers.ApiBaseController{Library.Core.Entities.Gender, System.Guid}</cref>
-    /// </seealso>
+    /// <seealso cref="Guid" />
     [Route("[controller]")]
-    public class GendersController : ApiBaseController<Gender, Guid>
+    public class PeopleController : ApiBaseController<Person, Guid>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GendersController" /> class.
+        /// Initializes a new instance of the <see cref="PeopleController"/> class.
         /// </summary>
-        /// <param name="queryRepository">The query repository.</param>
-        /// <param name="commandRepository">The command repository.</param>
+        /// <param name="readRepository">The read repository.</param>
+        /// <param name="writeRepository">The write repository.</param>
         /// <param name="logger">The logger.</param>
-        public GendersController(
-            IQueryRepository<Gender, Guid> queryRepository,
-            ICommandRepository<Gender, Guid> commandRepository,
-            ILogger<GendersController> logger)
-            : base(queryRepository, commandRepository, logger)
-        {
-        }
+        public PeopleController(
+            IQueryRepository<Person, Guid> readRepository,
+            ICommandRepository<Person, Guid> writeRepository,
+            ILogger<PeopleController> logger
+            ): base(readRepository, writeRepository, logger)
+        { }
 
         [HttpPost]
-        public override async Task<IActionResult> Create([FromBody]Gender item)
+        public override async Task<IActionResult> Create([FromBody]Person item)
         {
             return await base.Create(item);
         }
@@ -66,7 +63,7 @@ namespace Library.Services.Controllers
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
         [HttpPut]
-        public override async Task<IActionResult> Update([FromBody]Gender item)
+        public override async Task<IActionResult> Update([FromBody]Person item)
         {
             return await base.Update(item);
         }

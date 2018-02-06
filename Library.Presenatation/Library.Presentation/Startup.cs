@@ -1,9 +1,11 @@
-﻿using Library.Presentation.Filters;
+﻿using Library.Persistence.Context;
+using Library.Presentation.Filters;
 using Library.System;
 using Library.System.Libs;
 using Library.System.Libs.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -25,6 +27,10 @@ namespace Library.Presentation
         public void ConfigureServices(IServiceCollection services)
         {
             services.ConfigureLibrarySystem(Configuration);
+
+            //This is used for scaffolding
+            //var connectionString = Configuration["ConnectionStrings:DefaultConnectionString"];
+            //services.AddDbContext<LibraryDbContext>(options => options.UseSqlServer(connectionString));
 
             services.AddTransient<IWebApiHelper, WebApiHelper>();
 
