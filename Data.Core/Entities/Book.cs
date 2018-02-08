@@ -69,6 +69,8 @@ namespace Library.Core.Entities
         /// </value>
         public string Isbn { get; set; }
 
+        public string FullName => $"{Author?.FullName} - {Title}";
+
         /// <summary>
         /// Gets or sets the book exemplaries.
         /// </summary>

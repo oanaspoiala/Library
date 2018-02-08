@@ -2,9 +2,6 @@
 using Library.Buisness.Repository;
 using Library.Core.Entities;
 using Library.Core.Interfaces;
-using Library.Persistence.Context;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Library.Buisness
@@ -15,15 +12,14 @@ namespace Library.Buisness
 
         public static IServiceCollection ConfigureLibraryBusiness(this IServiceCollection services)
         {
-            services.AddTransient<ICommandRepository<Book, Guid>, BooksCommandRepository>();
+            services.AddTransient<ICommandRepository<Book, Guid>, CommandRepositoryBase<Book, Guid>>();
             services.AddTransient<IQueryRepository<Book, Guid>, BooksQueryRepository>();
 
-            //services.AddTransient<ICommandRepository<Book, Guid>, CommandRepositoryBase<Book, Guid>>();
             services.AddTransient<ICommandRepository<Author, Guid>, CommandRepositoryBase<Author, Guid>>();
             services.AddTransient<IQueryRepository<Author, Guid>, QueryRepositoryBase<Author, Guid>>();
 
             services.AddTransient<ICommandRepository<BookExemplary, Guid>, CommandRepositoryBase<BookExemplary, Guid>>();
-            services.AddTransient<IQueryRepository<BookExemplary, Guid>, QueryRepositoryBase<BookExemplary, Guid>>();
+            services.AddTransient<IQueryRepository<BookExemplary, Guid>, BookExemplariesQueryRepository>();
 
             services.AddTransient<ICommandRepository<Gender, Guid>, CommandRepositoryBase<Gender, Guid>>();
             services.AddTransient<IQueryRepository<Gender, Guid>, QueryRepositoryBase<Gender, Guid>>();

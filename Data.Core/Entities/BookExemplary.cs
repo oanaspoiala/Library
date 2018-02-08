@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace Library.Core.Entities
 {
     /// <summary>
     /// BookExemplary
     /// </summary>
-    /// <seealso cref="Library.Core.Entities.EntityWithId" />
+    /// <seealso cref="Entities.EntityWithId" />
     public class BookExemplary : EntityWithId<Guid>
     {
         /// <summary>
@@ -18,6 +16,8 @@ namespace Library.Core.Entities
         /// The code.
         /// </value>
         public string Code { get; set; }
+
+        //public int NumberOfExemplary { get; set; }
 
         /// <summary>
         /// Gets or sets the book identifier.

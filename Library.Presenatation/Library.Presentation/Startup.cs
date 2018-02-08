@@ -1,11 +1,9 @@
-﻿using Library.Persistence.Context;
-using Library.Presentation.Filters;
+﻿using Library.Presentation.Filters;
 using Library.System;
 using Library.System.Libs;
 using Library.System.Libs.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
