@@ -25,6 +25,7 @@ namespace Library.Core.Entities
         /// The book.
         /// </value>
         [ForeignKey("BookExemplaryId")]
+        [Display(Name = "Book exemplary")]
         public virtual BookExemplary BookExemplary { get; set; }
 
         /// <summary>
@@ -51,6 +52,8 @@ namespace Library.Core.Entities
         /// From date.
         /// </value>
         [Required]
+        [DataType(DataType.Date)]
+        [Display(Name = "From date")]
         public DateTime FromDate { get; set; }
 
         /// <summary>
@@ -60,6 +63,8 @@ namespace Library.Core.Entities
         /// To date.
         /// </value>
         [Required]
+        [DataType(DataType.Date)]
+        [Display(Name = "To date")]
         public DateTime ToDate { get; set; }
 
         /// <summary>
@@ -68,6 +73,8 @@ namespace Library.Core.Entities
         /// <value>
         /// The return date.
         /// </value>
+        [DataType(DataType.Date)]
+        [Display(Name = "Return date")]
         public DateTime? ReturnDate { get; set; }
     }
 }

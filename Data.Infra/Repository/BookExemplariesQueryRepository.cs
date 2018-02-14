@@ -15,13 +15,20 @@ namespace Library.Buisness.Repository
 
         public override async Task<ICollection<BookExemplary>> GetAll()
         {
-            var result = await Context.BookExemplaries.Include(b => b.Book).ToListAsync();
+            var result = await Context.BookExemplaries
+                .Include(b => b.Book)
+                .Include(b => b.Book.Author)
+                .Include(b => b.Book.Gender)
+                .ToListAsync();
             return result;
         }
 
         public override async Task<BookExemplary> GetById(Guid id)
         {
-            return await Context.BookExemplaries.Include(b => b.Book)
+            return await Context.BookExemplaries
+                .Include(b => b.Book)
+                .Include(b => b.Book.Author)
+                .Include(b => b.Book.Gender)
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
     }

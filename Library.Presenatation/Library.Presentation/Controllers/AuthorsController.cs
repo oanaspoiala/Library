@@ -37,8 +37,8 @@ namespace Library.Presentation.Controllers
             }
 
             var response = await _web.Get($"{apiUrl}/{id.Value.ToString()}");
-
-            return View(JsonConvert.DeserializeObject<Author>(await response.Content.ReadAsStringAsync()));
+            var model = JsonConvert.DeserializeObject<Author>(await response.Content.ReadAsStringAsync());
+            return View(model);
         }
 
         // GET: Authors/Create
@@ -52,7 +52,7 @@ namespace Library.Presentation.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("FirstName,LastName,Id")] Author author)
+        public async Task<IActionResult> Create([Bind("FirstName, LastName, Id, BirthDate, DeathDate")] Author author)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace Library.Presentation.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("FirstName,LastName,Id")] Author author)
+        public async Task<IActionResult> Edit(Guid id, [Bind("FirstName, LastName, Id, BirthDate, DeathDate")] Author author)
         {
             if (id != author.Id)
             {

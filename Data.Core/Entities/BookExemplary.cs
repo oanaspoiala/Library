@@ -6,7 +6,6 @@ namespace Library.Core.Entities
     /// <summary>
     /// BookExemplary
     /// </summary>
-    /// <seealso cref="Entities.EntityWithId" />
     public class BookExemplary : EntityWithId<Guid>
     {
         /// <summary>
