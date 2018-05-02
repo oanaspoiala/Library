@@ -57,10 +57,11 @@ namespace Library.Services
                     });
                 options.OperationFilter<AddRequiredHeaderParameter>();
             });
+
             services.ConfigureLibrarySystem(Configuration);
-            services.ConfigureLibrarySecurity(Configuration);
-            services.ConfigureJwtAuthentication(Configuration);
-            services.ConfigureAuthorization(Configuration);
+            //services.ConfigureLibrarySecurity(Configuration);
+            //services.ConfigureJwtAuthentication(Configuration);
+            //services.ConfigureAuthorization(Configuration);
 
             services.AddMvc(config =>
             {
@@ -91,8 +92,6 @@ namespace Library.Services
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMiddleware<AuthMiddleware>();
-
             // Enable middleware to serve generated Swagger as a JSON endpoint
             app.UseSwagger();
 
@@ -102,6 +101,8 @@ namespace Library.Services
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Library API V1");
             });
+
+            //app.UseMiddleware<AuthMiddleware>();
             app.UseMvc();
         }
     }

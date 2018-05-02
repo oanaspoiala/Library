@@ -22,14 +22,14 @@ namespace Library.Services
                 operation.Parameters = new List<IParameter>();
             }
 
-            operation.Parameters.Add(
-                new NonBodyParameter
-                {
-                    Name = "Authorization",
-                    In = "header",
-                    Type = "string",
-                    Required = true
-                });
+            //operation.Parameters.Add(
+            //    new NonBodyParameter
+            //    {
+            //        Name = "Authorization",
+            //        In = "header",
+            //        Type = "string",
+            //        Required = true
+            //    });
         }
     }
 }
