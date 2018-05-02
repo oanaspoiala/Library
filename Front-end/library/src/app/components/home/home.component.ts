@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  public title: string = 'Welocme to my library';
   constructor() { }
 
   ngOnInit() {
