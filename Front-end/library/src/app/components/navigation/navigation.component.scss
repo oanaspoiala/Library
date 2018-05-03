@@ -1,0 +1,26 @@
+$link-color: #4444a0;
+$background-colorl: #9e9ecc;
+div {
+    background-color: $background-colorl;
+    padding: 5px 5px;
+    color: $link-color;
+    ul {
+        display: inline;
+        list-style-type: none;
+        li {
+            float: left;
+            margin: 0 15px;
+            a {
+                padding: 5px 5px;
+                color: $link-color;
+                text-decoration: none;
+                transition: all 0, 2s;
+            }
+            a:hover {
+                color: $background-colorl;
+                background-color: $link-color;
+                text-decoration: none;
+            }
+        }
+    }
+}

@@ -5,6 +5,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { NavigationComponent, HomeComponent } from './components';
+import { GridComponent } from './components/grid/grid.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 
 
@@ -13,6 +15,8 @@ import { NavigationComponent, HomeComponent } from './components';
     AppComponent,
     NavigationComponent,
     HomeComponent,
+    GridComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,
