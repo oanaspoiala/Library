@@ -4,25 +4,33 @@
     flex-direction: column;
     width: 200px;
     height: 200px;
-    border: 1px solid rgba(0,0,0,0.2);
     margin: 6px;
     .tile {
         display: flex;
         flex-direction: column;
+        background-color: #fafafa;
+        //border: 1px solid rgba(0,0,0,0.5);
+        border-radius: 5px;
         height: 100%;
         width: 100%;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
     }
     .tile-title {
         display: flex;
         justify-content: center;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
         align-items: center;
         height: 30px;
         width: 100%;
-        background-color: #aaaaff;
+        background:$tileTitleBackgroundColor;
     }
     .tile-body {
-        background-color: #fafafa;
+        border-radius: 5px;
         height: 100%;
         width: 100%;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        background: $tileBodyBackgroundColor;
     }
 }
