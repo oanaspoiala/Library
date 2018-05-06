@@ -11,6 +11,5 @@ export class AppComponent {
   form: FormGroup;
 
   constructor(){
-    //this.createForm();
   }
 }

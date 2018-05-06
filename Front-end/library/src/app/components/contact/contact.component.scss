@@ -1,0 +1,13 @@
+$width: 800px;
+$margin: 180px 80px 50px;
+$padding: 450px;
+
+.container { 
+  width: $width;
+  margin: $margin;
+  padding-left: $padding;
+}
+
+.btn-success{
+    width: 80px;
+}
