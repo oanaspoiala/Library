@@ -1,10 +1,11 @@
-<div class="container">
-    <h2><div class="title">Welcome to library</div></h2>
+
+<div class="wrapper">
     <div class="wrapper">
-        <div class="column" >Author</div>
-        <div class="column">Book</div>
-        <div class="column">Gender</div>
-        <div class="column">Loan</div>
+        <lib-page-title><h2>{{title}}</h2></lib-page-title>
     </div>
-    <div class="footer">© 2018   Library</div>
+    <div class="tiles-wrapper">
+        <ng-container *ngFor="let tile of tiles">
+            <lib-tile [tile]="tile"></lib-tile>
+        </ng-container>
+    </div>
 </div>

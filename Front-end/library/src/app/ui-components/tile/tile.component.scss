@@ -1,0 +1,28 @@
+@import 'commons';
+:host {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 200px;
+    border: 1px solid rgba(0,0,0,0.2);
+    margin: 6px;
+    .tile {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+    }
+    .tile-title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 30px;
+        width: 100%;
+        background-color: #aaaaff;
+    }
+    .tile-body {
+        background-color: #fafafa;
+        height: 100%;
+        width: 100%;
+    }
+}

@@ -1,20 +1,33 @@
 <div class="container">
-    <h3>Information Request</h3>
+    <div class="wrapper">
+        <lib-page-title><h2>{{title}}</h2></lib-page-title>
+        </div>
     <form>
-      <div class="form-group">
-        <label for="name">Name</label>
+      <div class="row">
+        <label for="name" class="col-4">Name</label>
+        <div class="col-8">
         <input type="text" class="form-control" id="name">
       </div>
+      </div>
 
-      <div class="form-group">
-        <label for="alterEgo">Email</label>
+      <div class="row">
+        <label for="email" class="col-4">Email</label>
+        <div class="col-8">
         <input type="text" class="form-control" id="email">
       </div>
+      </div>
 
-      <textarea placeholder="Message" formControlName="message"></textarea>
+      <div class="row">
+        <label for="message" class="col-4">Message</label>
+        <div class="col-8">
+          <textarea id="message" placeholder="Message"></textarea>
+        </div>
+    </div>
 
-      <div class="btn-success">
+    <div class="row">
+      <div class="col-4 offset-4">
       <button type="submit" class="btn btn-success">Submit</button>
       </div>
+    </div>
     </form>
 </div>

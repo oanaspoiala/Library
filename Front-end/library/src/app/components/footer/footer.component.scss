@@ -1,0 +1,7 @@
+@import 'commons';
+:host {
+    display: flex;
+    align-items: center;
+    background-color: $footerBackgroundColorl;
+    height: $footerHeigth;
+}

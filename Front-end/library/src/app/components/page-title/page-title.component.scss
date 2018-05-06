@@ -1,0 +1,9 @@
+@import 'commons';
+:host {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 40px;
+    width: 100%;
+    background-color: $pageTitleBackgroundColor;
+}

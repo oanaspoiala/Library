@@ -1,0 +1,28 @@
+@import 'commons';
+:host {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    .main{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        flex-grow: 1;
+        min-height: 100%;
+        aside {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            flex-grow: 1;
+            min-height: 100%;
+            width: $sidebarWidth;
+        }
+        main {
+            background-color: $mainBackgroundColor;
+            flex-wrap: nowrap;
+            flex-grow: 1;
+            width: 100%;
+        }
+    }
+
+}
