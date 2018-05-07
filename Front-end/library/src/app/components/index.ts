@@ -1,7 +1,6 @@
 export * from './navigation/navigation.component';
 export * from './home/home.component';
 export * from './contact/contact.component';
-export * from './grid/grid.component';
 export * from './sidebar/sidebar.component';
 export * from './footer/footer.component';
 export * from './authors/authors.component';

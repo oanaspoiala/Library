@@ -8,8 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import {
   NavigationComponent, 
-  HomeComponent, 
-  GridComponent, 
+  HomeComponent,
   SidebarComponent, 
   FooterComponent,
   AuthorsComponent,
@@ -28,7 +27,6 @@ import { ApiClientService } from './services/api-client.service';
     AppComponent,
     NavigationComponent,
     HomeComponent,
-    GridComponent,
     ContactComponent,
     FooterComponent,
     SidebarComponent,

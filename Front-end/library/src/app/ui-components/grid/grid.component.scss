@@ -1,0 +1,14 @@
+@import 'commons';
+:host {
+    table {
+        thead {
+            background: #aaaaaa;
+        }
+        tbody {
+            background: #fafafa
+        }
+        tfoot {
+            background: #faaaaa;
+        }
+    }
+}

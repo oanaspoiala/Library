@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Author } from '../../models';
 import { ApiClientService } from '../../services/api-client.service';
 import { environment } from '../../../environments/environment';
+import { DateUtils } from '../../shared';
+import { GridColumn } from '../../ui-components';
 
 @Component({
   selector: 'lib-authors',
@@ -12,6 +14,13 @@ export class AuthorsComponent implements OnInit {
   public title: string = 'Autori';
   public apiUrl: string = `${environment.apiUrl}/Authors`;
   public items: Author[] = [];
+  public columns: GridColumn[] = [
+    { title: 'Prenume', fieldName: 'firstName', isSortable:true},
+    { title: 'Nume', fieldName: 'lastName', isSortable:true},
+    { title: 'Data nasterii', fieldName: 'birthDate', isSortable:true},
+    { title: 'Data decesului', fieldName: 'deathDate', isSortable:true}
+  ];
+
   constructor(
     private readonly api: ApiClientService
   ) { }
@@ -20,10 +29,19 @@ export class AuthorsComponent implements OnInit {
     this.getData();
   }
 
-  getData() {
+  public onPageChange(page) {
+    console.log(page);
+  }
+  
+  private getData() {
     this.api.get<Author[]>(this.apiUrl)
       .subscribe((result: Author[]) => {
-        console.log(result);
+        result.forEach((item: Author) => {
+          item.birthDate = DateUtils.dateFormat(item.birthDate);
+          item.deathDate = DateUtils.dateFormat(item.deathDate);
+          this.items = result;
+          console.log(result);
+        });
       }, (error) => {
         console.error(error);
       });

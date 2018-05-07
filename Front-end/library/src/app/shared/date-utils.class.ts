@@ -6,4 +6,11 @@ export class DateUtils {
         const momentDate = moment(value);
         return momentDate.format('DD/MM/YYYY');
     }
+
+    public static formatAllDate(value: object){
+        Object.keys(value).forEach(key => {
+            console.log(key);
+            console.log(typeof(value[key]));
+        })
+    }
 }
