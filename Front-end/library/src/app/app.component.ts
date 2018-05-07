@@ -1,15 +1,15 @@
-import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'lib-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'My library';
-  form: FormGroup;
-
   constructor(){
+  }
+
+  ngOnInit() { 
   }
 }

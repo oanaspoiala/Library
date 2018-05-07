@@ -4,7 +4,8 @@ import { HomeComponent, AuthorsComponent, BooksComponent, GendersComponent, Loan
 import { ContactComponent } from './components/contact/contact.component';
 
 const routes: Routes = [
-  {path: 'home', component: HomeComponent},
+  {path: '', component: HomeComponent},
+  {path: 'home', redirectTo: ''},
   {path: 'find', redirectTo: 'search'},
   {path: 'contact', component: ContactComponent},
   {path: 'authors', component: AuthorsComponent},

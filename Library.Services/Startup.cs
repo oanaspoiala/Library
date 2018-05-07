@@ -1,9 +1,7 @@
 ﻿using Library.Buisness;
 using Library.Persistence;
 using Library.Services.Filters;
-using Library.Services.Middleware;
 using Library.System;
-using Library.System.Security;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -41,6 +39,8 @@ namespace Library.Services
         {
             services.ConfigureLibraryPersistence(Configuration);
             services.ConfigureLibraryBusiness();
+
+            services.AddCors();
 
             services.AddSwaggerGen(options =>
             {
@@ -91,6 +91,13 @@ namespace Library.Services
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(builder =>
+            {
+                builder.AllowAnyOrigin();
+                builder.AllowAnyHeader();
+                builder.AllowAnyMethod();
+            });
 
             // Enable middleware to serve generated Swagger as a JSON endpoint
             app.UseSwagger();
