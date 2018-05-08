@@ -2,6 +2,7 @@
 <lib-page-title><h2>{{title}}</h2></lib-page-title>
 <lib-grid [columns]="columns"
         [items]="items"
-        (pageChange) = "onPageChange($event)">
+        (pageChange)="onPageChange($event)"
+        (headerClick)="onSortChange($event)">
 </lib-grid>
 </div>

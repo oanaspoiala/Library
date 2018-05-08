@@ -1,14 +1,24 @@
 @import 'commons';
 :host {
-    table {
-        thead {
-            background: #aaaaaa;
+  table {
+    thead {
+      tr {
+        th {
+          i {
+            width: 1em;
+          }
         }
-        tbody {
-            background: #fafafa
-        }
-        tfoot {
-            background: #faaaaa;
-        }
+      }
+      background: #aaaaaa;
     }
+    tbody {
+      background: #fafafa
+    }
+    tfoot {
+      background: #faaaaa;
+    }
+  }
+  .pointer {
+    cursor: pointer;
+  }
 }

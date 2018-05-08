@@ -2,3 +2,8 @@ export * from './ui-components.module';
 export * from './models';
 export * from './tile/tile.component';
 export * from './grid/grid.component';
+export * from './label/label.component';
+export * from './input-text/input-text.component';
+export * from './input-number/input-number.component';
+export * from './date-picker/date-picker.component';
+export * from './dropdown/dropdown.component';

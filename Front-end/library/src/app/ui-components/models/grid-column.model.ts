@@ -1,5 +1,5 @@
 export class GridColumn {
-    public title:string;
+    public title: string;
     public fieldName: string;
-    public isSortable:boolean;   
+    public isSortable: boolean;
 }

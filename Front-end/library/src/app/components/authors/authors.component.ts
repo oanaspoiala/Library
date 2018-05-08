@@ -3,7 +3,7 @@ import { Author } from '../../models';
 import { ApiClientService } from '../../services/api-client.service';
 import { environment } from '../../../environments/environment';
 import { DateUtils } from '../../shared';
-import { GridColumn } from '../../ui-components';
+import { GridColumn, SortItem } from '../../ui-components';
 
 @Component({
   selector: 'lib-authors',
@@ -15,10 +15,10 @@ export class AuthorsComponent implements OnInit {
   public apiUrl: string = `${environment.apiUrl}/Authors`;
   public items: Author[] = [];
   public columns: GridColumn[] = [
-    { title: 'Prenume', fieldName: 'firstName', isSortable:true},
-    { title: 'Nume', fieldName: 'lastName', isSortable:true},
-    { title: 'Data nasterii', fieldName: 'birthDate', isSortable:true},
-    { title: 'Data decesului', fieldName: 'deathDate', isSortable:true}
+    { title: 'Prenume', fieldName: 'firstName', isSortable: true},
+    { title: 'Nume', fieldName: 'lastName', isSortable: true},
+    { title: 'Data nasterii', fieldName: 'birthDate', isSortable: true},
+    { title: 'Data decesului', fieldName: 'deathDate', isSortable: true}
   ];
 
   constructor(
@@ -30,11 +30,11 @@ export class AuthorsComponent implements OnInit {
   }
 
   public onPageChange(page) {
-    console.log(page);
+    console.log(`Page changed to ${page}`);
   }
-  
-  public sortHeaderClick(value) {
-    console.log(value);
+
+  public onSortChange(sortItem: SortItem) {
+    console.log(`Sort by ${JSON.stringify(sortItem)}`);
   }
   private getData() {
     this.api.get<Author[]>(this.apiUrl)

@@ -4,12 +4,12 @@ import { AppRoutingModule } from './app-routing.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { HttpModule, Http } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
-
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AppComponent } from './app.component';
 import {
-  NavigationComponent, 
+  NavigationComponent,
   HomeComponent,
-  SidebarComponent, 
+  SidebarComponent,
   FooterComponent,
   AuthorsComponent,
   BooksComponent,
@@ -40,6 +40,7 @@ import { ApiClientService } from './services/api-client.service';
     BrowserModule,
     HttpModule,
     NgbModule.forRoot(),
+    AngularFontAwesomeModule,
     AppRoutingModule,
     UiComponentsModule,
     HttpClientModule,
