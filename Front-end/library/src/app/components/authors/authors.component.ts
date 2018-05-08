@@ -33,6 +33,9 @@ export class AuthorsComponent implements OnInit {
     console.log(page);
   }
   
+  public sortHeaderClick(value) {
+    console.log(value);
+  }
   private getData() {
     this.api.get<Author[]>(this.apiUrl)
       .subscribe((result: Author[]) => {

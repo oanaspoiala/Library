@@ -1,7 +1,11 @@
 <table [class]="class">
   <thead>
     <tr>
-      <th *ngFor="let column of columns; let i = index">{{column.title}}</th>
+      <th *ngFor="let column of columns; let i = index" (click)="sortHeaderClick(column.value)"
+          [ngClass]="{ 'sorting': isSorting(column.value), 
+          'sorting_asc': isSortAsc(column.value), 
+          'sorting_desc': isSortDesc(column.value) }">
+        {{column.title}}</th>
     </tr>
   </thead>
   <tbody>

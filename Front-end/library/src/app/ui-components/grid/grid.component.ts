@@ -11,6 +11,7 @@ export class GridComponent implements OnInit {
   @Input() columns: GridColumn[] = [];
   @Input() items: object[] = [];
   @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
+  @Output() isSorting: EventEmitter<any> = new EventEmitter<any>();
 
   public page:number = 1;
 
