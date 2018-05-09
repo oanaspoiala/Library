@@ -19,6 +19,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { UiComponentsModule } from './ui-components/ui-components.module';
 import { PageTitleComponent } from './components/page-title/page-title.component';
 import { ApiClientService } from './services/api-client.service';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -39,6 +40,7 @@ import { ApiClientService } from './services/api-client.service';
   imports: [
     BrowserModule,
     HttpModule,
+    FormsModule,
     NgbModule.forRoot(),
     AngularFontAwesomeModule,
     AppRoutingModule,

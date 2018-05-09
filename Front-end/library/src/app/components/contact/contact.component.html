@@ -6,14 +6,20 @@
       <div class="row">
         <label for="name" class="col-4">Name</label>
         <div class="col-8">
-        <input type="text" class="form-control" id="name">
+        <lib-input-text [(ngModel)]="name"
+                        inputClass="form-control"
+                        id="name" name="name">
+        </lib-input-text>
       </div>
       </div>
 
       <div class="row">
         <label for="email" class="col-4">Email</label>
         <div class="col-8">
-        <input type="text" class="form-control" id="email">
+          <lib-input-text [(ngModel)]="email"
+                          inputClass="form-control"
+                          id="email" name="email">
+        </lib-input-text>
       </div>
       </div>
 
@@ -30,4 +36,5 @@
       </div>
     </div>
     </form>
+    <lib-label>{{name}}</lib-label>
 </div>

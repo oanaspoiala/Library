@@ -7,7 +7,10 @@ import {FormsModule} from '@angular/forms';
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit {
-  public title:string='Information request';
+
+  public title: string = 'Information request';
+  public name: string = '';
+  public email: string = '';
   constructor() { }
 
   ngOnInit() {

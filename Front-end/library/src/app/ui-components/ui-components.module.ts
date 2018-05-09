@@ -8,6 +8,7 @@ import { InputTextComponent } from './input-text/input-text.component';
 import { InputNumberComponent } from './input-number/input-number.component';
 import { DatePickerComponent } from './date-picker/date-picker.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
+import { FormsModule } from '@angular/forms';
 
 const moduleComponents = [
   TileComponent,
@@ -21,6 +22,7 @@ const moduleComponents = [
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     NgbModule,
   ],
   declarations: [moduleComponents, InputTextComponent, InputNumberComponent, DatePickerComponent, DropdownComponent],
