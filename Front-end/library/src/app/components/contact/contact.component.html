@@ -2,11 +2,11 @@
     <div class="wrapper">
         <lib-page-title><h2>{{title}}</h2></lib-page-title>
         </div>
-    <form>
+    <form #contactForm>
       <div class="row">
         <label for="name" class="col-4">Name</label>
         <div class="col-8">
-          <lib-input-text [(ngModel)]="name"
+          <lib-input-text [(ngModel)]="item.name"
                           inputClass="form-control"
                           id="name" name="name">
           </lib-input-text>
@@ -16,30 +16,43 @@
       <div class="row">
         <label for="name" class="col-4">Password</label>
         <div class="col-8">
-          <lib-input-password [(ngModel)]="password"
+          <lib-input-text [(ngModel)]="item.password"
+                          type="password"
                           inputClass="form-control"
                           id="password" name="password">
-          </lib-input-password>
+          </lib-input-text>
         </div>
       </div>      
 
       <div class="row">
         <label for="email" class="col-4">Email</label>
         <div class="col-8">
-          <lib-input-text [(ngModel)]="email"
+          <lib-input-text type="email"
+                          [(ngModel)]="item.email"
                           inputClass="form-control"
                           id="email" name="email">
-        </lib-input-text>
-      </div>
+          </lib-input-text>
+        </div>
       </div>
 
       <div class="row">
         <label for="phone" class="col-4">Phone</label>
         <div class="col-8">
-        <lib-input-number [(ngModel)]="phone" 
-                            inputClass="form-control"
-                            id="phone" name="phone">
-        </lib-input-number>
+          <lib-input-text type="number"
+                          [(ngModel)]="item.phone" 
+                          inputClass="form-control"
+                          id="phone" name="phone">
+          </lib-input-text>
+        </div>
+      </div>
+
+      <div class="row">
+        <label for="phone" class="col-4">Is Active</label>
+        <div class="col-8">
+          <lib-checkbox [(ngModel)]="item.isActive" 
+                        inputClass="form-control"
+                        id="isActive" name="isActive">
+          </lib-checkbox>
         </div>
       </div>
 
@@ -48,23 +61,27 @@
         <div class="col-8">
           <textarea id="message" placeholder="Message"></textarea>
         </div>
-    </div>
-
-    <div class="row">
-      <label for="message" class="col-4">Data</label>
-      <div class="col-8">
-      <lib-date-picker [(ngModel)]="data" name="data"></lib-date-picker>
       </div>
-  </div>
 
-    <div class="row">
-      <div class="col-4 offset-4">
-      <button type="submit" class="btn btn-success">Submit</button>
+      <div class="row">
+        <label for="message" class="col-4">Data</label>
+        <div class="col-8">
+          <lib-date-picker  [(ngModel)]="item.data"
+                            name="data">
+          </lib-date-picker>
+        </div>
       </div>
-    </div>
+
+      <div class="row">
+        <div class="col-4 offset-4">
+        <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+      </div>
     </form>
-    <lib-label>{{name}}</lib-label>
-    <lib-label>{{password}}</lib-label>
-    <lib-label>{{phone}}</lib-label>
-    <lib-label>{{data}}</lib-label>
+    <lib-label>{{item.name}}</lib-label>
+    <lib-label>{{item.password}}</lib-label>
+    <lib-label>{{item.phone}}</lib-label>
+    <lib-label>{{item.data}}</lib-label>
+    <lib-label>{{item.email}}</lib-label>
+    <lib-label>{{item.isActive}}</lib-label>
 </div>

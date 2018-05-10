@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 
 import * as moment from 'moment';
+import { Contact } from './contact.model';
 
 @Component({
   selector: 'lib-contact',
@@ -9,12 +10,17 @@ import * as moment from 'moment';
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit {
-
   public title: string = 'Information request';
-  public name: string = '';
-  public email: string = '';
-  public phone: number = 0;
-  public data = moment();
+
+  public item: Contact = {
+    name: '',
+    password: '',
+    email: '',
+    data: moment(),
+    phone: 0,
+    isActive: true
+  };
+
   constructor() { }
 
   ngOnInit() {

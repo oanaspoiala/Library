@@ -8,3 +8,4 @@ export * from './input-number/input-number.component';
 export * from './date-picker/date-picker.component';
 export * from './dropdown/dropdown.component';
 export * from './input-password/input-password.component';
+export * from './checkbox/checkbox.component';

@@ -10,6 +10,7 @@ import { DatePickerComponent } from './date-picker/date-picker.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { FormsModule } from '@angular/forms';
 import { InputPasswordComponent } from './input-password/input-password.component';
+import { CheckboxComponent } from './checkbox/checkbox.component';
 
 const moduleComponents = [
   TileComponent,
@@ -20,6 +21,7 @@ const moduleComponents = [
   DatePickerComponent,
   DropdownComponent,
   InputPasswordComponent,
+  CheckboxComponent,
 ];
 @NgModule({
   imports: [

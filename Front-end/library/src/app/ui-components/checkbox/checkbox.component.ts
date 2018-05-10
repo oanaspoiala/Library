@@ -2,23 +2,23 @@ import { Component, OnInit, Input, forwardRef, HostBinding } from '@angular/core
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormControl } from '@angular/forms';
 
 let nextId = 0;
-const INPUT_TEXT_VALUE_ACCESSOR = forwardRef(() => InputTextComponent);
+const CHECKBOX_VALUE_ACCESSOR = forwardRef(() => CheckboxComponent);
 @Component({
-  selector: 'lib-input-text',
-  templateUrl: './input-text.component.html',
-  styleUrls: ['./input-text.component.scss'],
-  providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: INPUT_TEXT_VALUE_ACCESSOR, multi: true}]
+  selector: 'lib-checkbox',
+  templateUrl: './checkbox.component.html',
+  styleUrls: ['./checkbox.component.scss'],
+  providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: CHECKBOX_VALUE_ACCESSOR, multi: true}]
 })
-export class InputTextComponent implements OnInit, ControlValueAccessor {
+export class CheckboxComponent implements OnInit, ControlValueAccessor {
 
-  @Input() id = `input-text-${++nextId}`;
-  @Input() type: string = 'text';
+  @Input() id = `checkbox-${++nextId}`;
+  @Input() type: boolean = false;
   @Input() inputClass: string = 'form-control';
 
-  public value: string;
+  public value: boolean;
   public isDisabled: boolean = false;
 
-  public onChangeFnc = (_: any) => {};
+  public onChangeFnc = (_: boolean) => {};
   public onTouchedFnc = (_: any) => {};
 
   constructor() { }
@@ -26,7 +26,7 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
   ngOnInit() {
   }
 
-  writeValue(obj: any): void {
+  writeValue(obj: boolean): void {
     if (obj === undefined) {
       return;
     }
@@ -46,8 +46,10 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
     this.isDisabled = isDisabled;
   }
 
-  onModelChanged() {
+  onModelChanged(event) {
+    this.value = event;
     this.onChangeFnc(this.value);
   }
 }
+
 
