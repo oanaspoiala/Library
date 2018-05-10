@@ -1,3 +1,18 @@
-<p>
-  date-picker works!
-</p>
+<form class="form-inline">
+  <div class="form-group">
+    <div class="input-group">
+      <input  class="form-control"
+              placeholder="yyyy-mm-dd"
+              name="dp"
+              [(ngModel)]="_model"
+              (ngModelChange)="onDataChanged()"
+              ngbDatepicker
+              #d="ngbDatepicker">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

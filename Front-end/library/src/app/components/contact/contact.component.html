@@ -6,12 +6,22 @@
       <div class="row">
         <label for="name" class="col-4">Name</label>
         <div class="col-8">
-        <lib-input-text [(ngModel)]="name"
-                        inputClass="form-control"
-                        id="name" name="name">
-        </lib-input-text>
+          <lib-input-text [(ngModel)]="name"
+                          inputClass="form-control"
+                          id="name" name="name">
+          </lib-input-text>
+        </div>
       </div>
-      </div>
+
+      <div class="row">
+        <label for="name" class="col-4">Password</label>
+        <div class="col-8">
+          <lib-input-password [(ngModel)]="password"
+                          inputClass="form-control"
+                          id="password" name="password">
+          </lib-input-password>
+        </div>
+      </div>      
 
       <div class="row">
         <label for="email" class="col-4">Email</label>
@@ -24,11 +34,28 @@
       </div>
 
       <div class="row">
+        <label for="phone" class="col-4">Phone</label>
+        <div class="col-8">
+        <lib-input-number [(ngModel)]="phone" 
+                            inputClass="form-control"
+                            id="phone" name="phone">
+        </lib-input-number>
+        </div>
+      </div>
+
+      <div class="row">
         <label for="message" class="col-4">Message</label>
         <div class="col-8">
           <textarea id="message" placeholder="Message"></textarea>
         </div>
     </div>
+
+    <div class="row">
+      <label for="message" class="col-4">Data</label>
+      <div class="col-8">
+      <lib-date-picker [(ngModel)]="data" name="data"></lib-date-picker>
+      </div>
+  </div>
 
     <div class="row">
       <div class="col-4 offset-4">
@@ -37,4 +64,7 @@
     </div>
     </form>
     <lib-label>{{name}}</lib-label>
+    <lib-label>{{password}}</lib-label>
+    <lib-label>{{phone}}</lib-label>
+    <lib-label>{{data}}</lib-label>
 </div>

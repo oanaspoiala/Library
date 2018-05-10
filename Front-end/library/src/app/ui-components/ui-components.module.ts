@@ -9,6 +9,7 @@ import { InputNumberComponent } from './input-number/input-number.component';
 import { DatePickerComponent } from './date-picker/date-picker.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { FormsModule } from '@angular/forms';
+import { InputPasswordComponent } from './input-password/input-password.component';
 
 const moduleComponents = [
   TileComponent,
@@ -18,6 +19,7 @@ const moduleComponents = [
   InputNumberComponent,
   DatePickerComponent,
   DropdownComponent,
+  InputPasswordComponent,
 ];
 @NgModule({
   imports: [
@@ -25,7 +27,7 @@ const moduleComponents = [
     FormsModule,
     NgbModule,
   ],
-  declarations: [moduleComponents, InputTextComponent, InputNumberComponent, DatePickerComponent, DropdownComponent],
+  declarations: [moduleComponents],
   exports: [moduleComponents]
 })
 export class UiComponentsModule { }

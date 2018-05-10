@@ -9,9 +9,9 @@ const routes: Routes = [
   {path: 'find', redirectTo: 'search'},
   {path: 'contact', component: ContactComponent},
   {path: 'authors', component: AuthorsComponent},
-  {path:'books', component: BooksComponent},
-  {path:'genders', component: GendersComponent},
-  {path:'loans', component: LoansComponent},
+  {path: 'books', component: BooksComponent},
+  {path: 'genders', component: GendersComponent},
+  {path: 'loans', component: LoansComponent},
   {path: '**', redirectTo: 'home'}
 ];
 

@@ -2,17 +2,17 @@ import { Component, OnInit, Input, forwardRef, HostBinding } from '@angular/core
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormControl } from '@angular/forms';
 
 let nextId = 0;
-const INPUT_TEXT_VALUE_ACCESSOR = forwardRef(() => InputTextComponent);
-@Component({
-  selector: 'lib-input-text',
-  templateUrl: './input-text.component.html',
-  styleUrls: ['./input-text.component.scss'],
-  providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: INPUT_TEXT_VALUE_ACCESSOR, multi: true}]
-})
-export class InputTextComponent implements OnInit, ControlValueAccessor {
+const INPUT_PASSWORD_VALUE_ACCESSOR = forwardRef(() => InputPasswordComponent);
 
-  @Input() id = `input-text-${++nextId}`;
-  // TODO: find the right way to pass the class to inner control
+@Component({
+  selector: 'lib-input-password',
+  templateUrl: './input-password.component.html',
+  styleUrls: ['./input-password.component.scss'],
+  providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: INPUT_PASSWORD_VALUE_ACCESSOR, multi: true}]
+})
+export class InputPasswordComponent implements OnInit, ControlValueAccessor {
+
+  @Input() id = `input-password-${++nextId}`;
   @Input() inputClass: string = 'form-control';
 
   public value: string;
