@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import { Component, OnInit, Injectable } from '@angular/core';
 
 import * as moment from 'moment';
 import { Contact } from './contact.model';
+// import { ProductForm } from './product.model';
 
 @Component({
   selector: 'lib-contact',
@@ -11,6 +11,7 @@ import { Contact } from './contact.model';
 })
 export class ContactComponent implements OnInit {
   public title: string = 'Information request';
+  // public ProductForm: FormGroup;
 
   public item: Contact = {
     name: '',
@@ -18,12 +19,12 @@ export class ContactComponent implements OnInit {
     email: '',
     data: moment(),
     phone: 0,
-    isActive: true
+    isActive: true,
+    message: ''
   };
 
-  constructor() { }
+    constructor() {}
 
   ngOnInit() {
   }
-
 }

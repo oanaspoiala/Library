@@ -1,0 +1,12 @@
+@import 'commons';
+:host {
+  label {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .error {
+    color: red;
+    border: 1px solid red;
+  }
+}

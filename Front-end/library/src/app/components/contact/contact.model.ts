@@ -5,4 +5,5 @@ export class Contact {
     public phone: number;
     public data: any;
     public isActive: boolean;
+    public message: string;
 }

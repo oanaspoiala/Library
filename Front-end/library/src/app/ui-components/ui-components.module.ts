@@ -27,6 +27,10 @@ const moduleComponents = [
   imports: [
     CommonModule,
     FormsModule,
+    // FormArray,
+    // FormGroup,
+    // FormBuilder,
+    // FormControl,
     NgbModule,
   ],
   declarations: [moduleComponents],

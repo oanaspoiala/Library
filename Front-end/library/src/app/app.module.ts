@@ -19,7 +19,8 @@ import { ContactComponent } from './components/contact/contact.component';
 import { UiComponentsModule } from './ui-components/ui-components.module';
 import { PageTitleComponent } from './components/page-title/page-title.component';
 import { ApiClientService } from './services/api-client.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ContactReactiveComponent } from './components/contact-reactive/contact-reactive.component';
 
 
 
@@ -36,11 +37,18 @@ import { FormsModule } from '@angular/forms';
     GendersComponent,
     LoansComponent,
     PageTitleComponent,
+    ContactReactiveComponent,
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
+    ReactiveFormsModule,
+    // FormControl,
+    // FormArray,
+    // FormBuilder,
+    // FormGroup,
+    // Validators,
     NgbModule.forRoot(),
     AngularFontAwesomeModule,
     AppRoutingModule,
