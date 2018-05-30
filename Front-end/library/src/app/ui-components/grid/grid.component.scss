@@ -2,23 +2,20 @@
 :host {
   table {
     thead {
-      tr {
+      .table-header {
         th {
           i {
             width: 1em;
           }
         }
+        background: $tblHeaderBackground;
       }
-      background: #aaaaaa;
     }
     tbody {
-      background: #fafafa
+      background: $tblBodyBackground;
     }
     tfoot {
-      background: #faaaaa;
+      background: $tblFooterBackground;
     }
-  }
-  .pointer {
-    cursor: pointer;
   }
 }

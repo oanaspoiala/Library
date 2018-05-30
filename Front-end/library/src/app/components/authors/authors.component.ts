@@ -18,7 +18,7 @@ export class AuthorsComponent implements OnInit {
     { title: 'Prenume', fieldName: 'firstName', isSortable: true},
     { title: 'Nume', fieldName: 'lastName', isSortable: true},
     { title: 'Data nasterii', fieldName: 'birthDate', isSortable: true},
-    { title: 'Data decesului', fieldName: 'deathDate', isSortable: true}
+    { title: 'Data decesului', fieldName: 'deathDate', isSortable: true},
   ];
 
   constructor(
@@ -36,6 +36,23 @@ export class AuthorsComponent implements OnInit {
   public onSortChange(sortItem: SortItem) {
     console.log(`Sort by ${JSON.stringify(sortItem)}`);
   }
+
+  public onAddClick() {
+    console.log('Add item');
+  }
+
+  public onEditClick(itemId: any) {
+    console.log(`Edit item id ${itemId}`);
+  }
+
+  public onDeleteClick(itemId: any) {
+    console.log(`Delete item id ${itemId}`);
+  }
+
+  public onDetailsClick(itemId: any) {
+    console.log(`Details item id ${itemId}`);
+  }
+
   private getData() {
     this.api.get<Author[]>(this.apiUrl)
       .subscribe((result: Author[]) => {

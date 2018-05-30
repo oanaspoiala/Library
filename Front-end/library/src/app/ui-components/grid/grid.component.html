@@ -1,6 +1,11 @@
 <table [class]="class">
   <thead>
     <tr>
+      <th [attr.colspan]="columns.length + 1">
+        <i class="fa fa-plus button pointer add" (click)="onAddClick()"></i>
+      </th>
+    </tr>
+    <tr class="table-header">
       <th *ngFor="let column of columns; let i = index"
           (click)="onHeaderClick(column.isSortable, column.fieldName)">
         <lib-label [ngClass]="{'pointer': column.isSortable}"
@@ -15,6 +20,7 @@
             <i class="float-right" aria-hidden="true">&nbsp;</i>
         </ng-container>        
       </th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -22,12 +28,19 @@
       <td *ngFor="let column of columns; let col = index">
           <lib-label [id]="'cell-' + column.fieldName + '-' + row ">{{item[column.fieldName]}}</lib-label>
       </td>
+      <td>
+        <lib-input-button [targetId]="item['id']"
+                          (editClick)="onEditClick($event)"
+                          (deleteClick)="onDeleteClick($event)"
+                          (detailsClick)="onDetailsClick($event)">
+        </lib-input-button>
+      </td>
     </tr>
   </tbody>
 
   <tfoot>
     <tr>
-      <td [attr.colspan]="columns.length">
+      <td [attr.colspan]="columns.length + 1">
           <ngb-pagination [collectionSize]="120" 
                           [(page)]="page" 
                           [maxSize]="5" 

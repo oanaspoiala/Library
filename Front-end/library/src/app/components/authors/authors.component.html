@@ -3,6 +3,10 @@
 <lib-grid [columns]="columns"
         [items]="items"
         (pageChange)="onPageChange($event)"
-        (headerClick)="onSortChange($event)">
+        (headerClick)="onSortChange($event)"
+        (addClick)="onAddClick()"
+        (detailsClick)="onDetailsClick($event)"
+        (editClick)="onEditClick($event)"
+        (deleteClick)="onDeleteClick($event)">
 </lib-grid>
 </div>

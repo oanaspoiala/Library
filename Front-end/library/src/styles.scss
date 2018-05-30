@@ -16,3 +16,33 @@ html, body {
     justify-content: flex-start;
     flex-wrap: wrap;
 }
+
+.pointer {
+    cursor: pointer;
+  }
+  .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(0,0,0,0.3);
+    height: 35px;
+    width: 35px;
+  }
+  .button:hover {
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+  }
+  .add {
+    color: #007a00;
+  }
+
+  .edit {
+      color: #c27e01;
+  }
+
+  .delete {
+      color: #a30000;
+  }
+
+  .details {
+      color: #494bc2;
+  }

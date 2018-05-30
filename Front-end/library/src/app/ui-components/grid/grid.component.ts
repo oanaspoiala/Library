@@ -14,6 +14,10 @@ export class GridComponent implements OnInit {
 
   @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
   @Output() headerClick: EventEmitter<SortItem> = new EventEmitter<SortItem>();
+  @Output() editClick: EventEmitter<any> = new EventEmitter();
+  @Output() detailsClick: EventEmitter<any> = new EventEmitter();
+  @Output() deleteClick: EventEmitter<any> = new EventEmitter();
+  @Output() addClick: EventEmitter<any> = new EventEmitter();
 
   public sortItem: SortItem = {fieldName: '', descending: false};
   public page: number = 1;
@@ -33,5 +37,21 @@ export class GridComponent implements OnInit {
       }
       this.headerClick.emit(this.sortItem);
     }
+  }
+
+  public onAddClick() {
+    this.addClick.emit(null);
+  }
+
+  public onEditClick(itemId: any) {
+    this.editClick.emit(itemId);
+  }
+
+  public onDeleteClick(itemId: any) {
+    this.deleteClick.emit(itemId);
+  }
+
+  public onDetailsClick(itemId: any) {
+    this.detailsClick.emit(itemId);
   }
 }
