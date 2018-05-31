@@ -7,3 +7,4 @@ export * from './authors/authors.component';
 export * from './books/books.component';
 export * from './genders/genders.component';
 export * from './loans/loans.component';
+export * from './people/people.component';

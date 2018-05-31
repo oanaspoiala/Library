@@ -21,6 +21,7 @@ import { PageTitleComponent } from './components/page-title/page-title.component
 import { ApiClientService } from './services/api-client.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ContactReactiveComponent } from './components/contact-reactive/contact-reactive.component';
+import { PeopleComponent } from './components/people/people.component';
 
 
 
@@ -38,6 +39,7 @@ import { ContactReactiveComponent } from './components/contact-reactive/contact-
     LoansComponent,
     PageTitleComponent,
     ContactReactiveComponent,
+    PeopleComponent,
   ],
   imports: [
     BrowserModule,

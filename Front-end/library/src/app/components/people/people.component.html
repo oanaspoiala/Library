@@ -1,0 +1,11 @@
+<div class="wrapper">
+  <lib-page-title><h2>{{title}}</h2></lib-page-title>
+  <lib-grid [columns]="columns"
+            [items]="items" 
+            (pageChange)="onPageChange($event)"
+            (addClick)="onAddClick()"
+            (editClick)="onEditClick($event)"
+            (detailsClick)="onDetailsClick($event)"
+            (deleteClick)="onDeleteClick($event)">
+  </lib-grid>         
+</div>

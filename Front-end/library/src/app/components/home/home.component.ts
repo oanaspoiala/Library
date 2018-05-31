@@ -9,15 +9,13 @@ import { Tile } from '../../ui-components/models/tile.models';
 export class HomeComponent implements OnInit {
   public title: string = 'Welcome to my library';
   public tiles: Tile[] = [
-    {title:'Author', pictureUrl:'', route:'/authors'},
-    {title:'Books', pictureUrl:'', route:'/books'},
-    {title:'Genders', pictureUrl:'', route:'/genders'},
-    {title:'Loans', pictureUrl:'', route:'/loans'}
-    // 'Authors',
-    // 'Genders',
-    // 'Books',
-    // 'Loans'
-  ]
+    {title: 'Author', pictureUrl: '', route: '/authors'},
+    {title: 'Books', pictureUrl: '', route: '/books'},
+    {title: 'Genders', pictureUrl: '', route: '/genders'},
+    {title: 'Loans', pictureUrl: '', route: '/loans'},
+    {title: 'Person', pictureUrl: '', route: '/people'},
+  ];
+
   constructor() { }
 
   ngOnInit() {
