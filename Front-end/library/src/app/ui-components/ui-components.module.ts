@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { InputPasswordComponent } from './input-password/input-password.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { InputButtonComponent } from './input-button/input-button.component';
+import { InputComponent } from './input/input.component';
 
 const moduleComponents = [
   TileComponent,
@@ -34,7 +35,7 @@ const moduleComponents = [
     // FormControl,
     NgbModule,
   ],
-  declarations: [moduleComponents, InputButtonComponent],
+  declarations: [moduleComponents, InputButtonComponent, InputComponent],
   exports: [moduleComponents]
 })
 export class UiComponentsModule { }

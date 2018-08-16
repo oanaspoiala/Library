@@ -1,0 +1,33 @@
+<ng-container [ngSwitch]="fieldType">
+  <ng-container *ngSwitchCase="FieldTypes.Text">
+    <lib-input-text [id]="id"
+                    [(ngModel)]="value"
+                    (ngValueChange)="onValueChange($event)">
+    </lib-input-text>
+  </ng-container>
+  <ng-container *ngSwitchCase="FieldTypes.Password">
+    <lib-input-password>
+    </lib-input-password>
+  </ng-container>
+  <ng-container *ngSwitchCase="FieldTypes.Number">
+    <lib-input-number>
+    </lib-input-number>
+  </ng-container>
+  <ng-container *ngSwitchCase="FieldTypes.Textarea">
+    <textarea>
+    </textarea>
+  </ng-container>
+  <ng-container *ngSwitchCase="FieldTypes.Date">
+    <lib-date-picker>
+    </lib-date-picker>
+  </ng-container>
+  <ng-container *ngSwitchCase="FieldTypes.Select">
+    <lib-dropdown>
+    </lib-dropdown>
+  </ng-container>
+  <ng-container *ngSwitchCase="FieldTypes.Checkbox">
+    <lib-checkbox>
+    </lib-checkbox>
+  </ng-container>
+  <ng-container *ngSwitchDefault></ng-container>
+</ng-container>
