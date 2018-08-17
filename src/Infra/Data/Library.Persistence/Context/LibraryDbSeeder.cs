@@ -53,7 +53,8 @@ namespace Library.Persistence.Context
             {
                 new Gender {Name = "Medicina"},
                 new Gender {Name = "Literatura straina"},
-                new Gender {Name = "Literatura romana"}
+                new Gender {Name = "Literatura romana"},
+                new Gender {Name = "Tehnica"}
             };
 
             apContext.Genders.AddRange(genders);
@@ -84,8 +85,8 @@ namespace Library.Persistence.Context
 
             var bookExemplaries = new List<BookExemplary>
             {
-                new BookExemplary { Book = books[0], Code = "4567890", Loans = people[0]},
-                new BookExemplary { Book = books[1], Code = "7694033", Loans = people[1]}
+                new BookExemplary { Book = books[0], Code = "4567890"},
+                new BookExemplary { Book = books[1], Code = "7694033"}
             };
 
             apContext.BookExemplaries.AddRange(bookExemplaries);

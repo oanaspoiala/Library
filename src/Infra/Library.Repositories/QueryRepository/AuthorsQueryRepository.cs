@@ -2,13 +2,14 @@
 using System.Threading.Tasks;
 using Library.Domain.Entities;
 using Library.Persistence.Context;
+using Library.Repositories.BaseRepository;
 using Microsoft.EntityFrameworkCore;
 
-namespace Library.Repositories
+namespace Library.Repositories.QueryRepository
 {
-    public class AuthorsQueryRepository : QueryRepositoryBase<Author, Guid>
+    public abstract class AuthorsQueryRepository : QueryRepositoryBase<Author, Guid>
     {
-        public AuthorsQueryRepository(LibraryDbContext context)
+        protected AuthorsQueryRepository(LibraryDbContext context)
             : base(context)
         {
         }

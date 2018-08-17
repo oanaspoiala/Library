@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Library.Domain.Core.Entities;
 using Library.Domain.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -14,24 +15,19 @@ namespace Library.Services.Controllers
     /// <seealso cref="Microsoft.AspNetCore.Mvc.Controller" />
     public abstract class ApiBaseController<T, TId> : Controller where T: EntityWithId<TId>
     {
-        protected readonly IQueryRepository<T, TId> QueryRepository;
-        protected readonly ICommandRepository<T, TId> CommandRepository;
+        protected readonly IRepository<T, TId> Repository;
         protected readonly ILogger Logger;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiBaseController{T, TId}"/> class.
+        /// Initializes a new instance of the <see cref="ApiBaseController{T, TId}" /> class.
         /// </summary>
-        /// <param name="queryRepository">The query repository.</param>
-        /// <param name="commandRepository">The command repository.</param>
         /// <param name="logger">The logger.</param>
+        /// <param name="repository">The repository.</param>
         protected ApiBaseController(
-            IQueryRepository<T, TId> queryRepository,
-            ICommandRepository<T, TId> commandRepository,
-            ILogger<ApiBaseController<T, TId>> logger)
+            ILogger<ApiBaseController<T, TId>> logger, IRepository<T, TId> repository)
         {
-            QueryRepository = queryRepository;
-            CommandRepository = commandRepository;
             Logger = logger;
+            Repository = repository;
         }
 
         /// <summary>
@@ -42,7 +38,7 @@ namespace Library.Services.Controllers
         /// <exception cref="NotImplementedException"></exception>
         public virtual async Task<IActionResult> Create(T item)
         {
-            var response = await CommandRepository.Add(item);
+            var response = await Repository.Add(item);
             return Ok(response);
         }
 
@@ -54,7 +50,7 @@ namespace Library.Services.Controllers
         /// <exception cref="NotImplementedException"></exception>
         public virtual async Task<IActionResult> Get(TId id)
         {
-            var response = await QueryRepository.GetById(id);
+            var response = await Repository.GetById(id);
             return Ok(response);
         }
 
@@ -65,7 +61,7 @@ namespace Library.Services.Controllers
         /// <exception cref="NotImplementedException"></exception>
         public virtual async Task<IActionResult> GetAll()
         {
-            var response = await QueryRepository.GetAll();
+            var response = await Repository.GetAll();
             return Ok(response);
         }
 
@@ -77,7 +73,7 @@ namespace Library.Services.Controllers
         /// <exception cref="NotImplementedException"></exception>
         public virtual async Task<IActionResult> Update(T item)
         {
-            await CommandRepository.Update(item);
+            await Repository.Update(item);
             return Ok();
         }
 
@@ -89,7 +85,7 @@ namespace Library.Services.Controllers
         /// <exception cref="NotImplementedException"></exception>
         public virtual async Task<IActionResult> Delete(TId id)
         {
-            await CommandRepository.Delete(id);
+            await Repository.Delete(id);
             return Ok();
         }
     }

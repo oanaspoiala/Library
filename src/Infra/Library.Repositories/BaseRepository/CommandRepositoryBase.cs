@@ -4,21 +4,21 @@ using Library.Domain.Core.Interfaces;
 using Library.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace Library.Repositories
+namespace Library.Repositories.BaseRepository
 {
-    public class CommandRepositoryBase<T, TId> : ICommandRepository<T, TId> where T : EntityWithId<TId>
+    public abstract class CommandRepositoryBase<T, TId> : ICommandRepository<T, TId> where T : EntityWithId<TId>
     {
-        protected readonly LibraryDbContext Context;
-        protected readonly DbSet<T> DataSet;
+        private readonly LibraryDbContext _context;
+        private readonly DbSet<T> _dataSet;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CommandRepositoryBase{T, TId}"/> class.
         /// </summary>
         /// <param name="context">The context.</param>
-        public CommandRepositoryBase(LibraryDbContext context)
+        protected CommandRepositoryBase(LibraryDbContext context)
         {
-            Context = context;
-            DataSet = Context.Set<T>();
+            _context = context;
+            _dataSet = _context.Set<T>();
         }
 
         /// <summary>
@@ -28,8 +28,8 @@ namespace Library.Repositories
         /// <returns></returns>
         public virtual async Task<TId> Add(T item)
         {
-            await DataSet.AddAsync(item);
-            await Context.SaveChangesAsync();
+            await _dataSet.AddAsync(item);
+            await _context.SaveChangesAsync();
             return item.Id;
         }
 
@@ -40,8 +40,8 @@ namespace Library.Repositories
         /// <returns></returns>
         public virtual async Task Update(T item)
         {
-            DataSet.Update(item);
-            await Context.SaveChangesAsync();
+            _dataSet.Update(item);
+            await _context.SaveChangesAsync();
         }
 
         /// <summary>
@@ -51,9 +51,9 @@ namespace Library.Repositories
         /// <returns></returns>
         public virtual async Task Delete(TId id)
         {
-            var item = await DataSet.FindAsync(id);
-            DataSet.Remove(item);
-            await Context.SaveChangesAsync();
+            var item = await _dataSet.FindAsync(id);
+            _dataSet.Remove(item);
+            await _context.SaveChangesAsync();
         }
     }
 }

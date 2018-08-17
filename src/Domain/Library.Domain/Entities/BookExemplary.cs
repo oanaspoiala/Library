@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using Library.Domain.Core.Entities;
 
@@ -17,8 +18,6 @@ namespace Library.Domain.Entities
         /// </value>
         public string Code { get; set; }
 
-        //public int NumberOfExemplary { get; set; }
-
         /// <summary>
         /// Gets or sets the book identifier.
         /// </summary>
@@ -33,15 +32,13 @@ namespace Library.Domain.Entities
         /// <value>
         /// The book.
         /// </value>
-        [ForeignKey("BookId")]
+        [ForeignKey(nameof(BookId))]
         public virtual Book Book { get; set; }
 
-        /// <summary>
-        /// Gets or sets the loans.
-        /// </summary>
-        /// <value>
-        /// The loans.
-        /// </value>
-        public virtual Person Loans { get; set; }
+        public virtual ICollection<WearDegree> WearDegrees { get; set; }
+
+        public virtual ICollection<Reservation> Reservations { get; set; }
+
+        public virtual ICollection<Loan> Loans { get; set; }
     }
 }

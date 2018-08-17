@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Library.Domain.Entities;
 using Library.Persistence.Context;
+using Library.Repositories.BaseRepository;
 using Microsoft.EntityFrameworkCore;
 
-namespace Library.Repositories
+namespace Library.Repositories.QueryRepository
 {
-    public class LoansQueryRepository : QueryRepositoryBase<Loan, Guid>
+    public abstract class LoansQueryRepository : QueryRepositoryBase<Loan, Guid>
     {
-        public LoansQueryRepository(LibraryDbContext context)
+        protected LoansQueryRepository(LibraryDbContext context)
             : base(context)
         { }
 

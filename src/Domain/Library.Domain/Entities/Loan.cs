@@ -24,7 +24,7 @@ namespace Library.Domain.Entities
         /// <value>
         /// The book.
         /// </value>
-        [ForeignKey("BookExemplaryId")]
+        [ForeignKey(nameof(BookExemplaryId))]
         [Display(Name = "Book exemplary")]
         public virtual BookExemplary BookExemplary { get; set; }
 
@@ -42,7 +42,7 @@ namespace Library.Domain.Entities
         /// <value>
         /// The person.
         /// </value>
-        [ForeignKey("PersonId")]
+        [ForeignKey(nameof(PersonId))]
         public virtual Person Person { get; set; }
 
         /// <summary>

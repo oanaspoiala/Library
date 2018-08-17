@@ -10,11 +10,15 @@ namespace Library.Services.Controllers
     [Route("[controller]")]
     public class LoansController : ApiBaseController<Loan, Guid>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LoansController"/> class.
+        /// </summary>
+        /// <param name="repository">The repository.</param>
+        /// <param name="logger">The logger.</param>
         public LoansController(
-            IQueryRepository<Loan, Guid> readRepository,
-            ICommandRepository<Loan, Guid> writeRepository,
+            IRepository<Loan, Guid> repository,
             ILogger<LoansController> logger
-        ) : base(readRepository, writeRepository, logger)
+        ) : base(logger, repository)
         { }
 
         [HttpPost]

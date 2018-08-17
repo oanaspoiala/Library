@@ -73,5 +73,13 @@ namespace Library.Domain.Entities
         /// The loans.
         /// </value>
         public virtual ICollection<Loan> Loans { get; set; }
+
+        /// <summary>
+        /// Gets or sets the reservations.
+        /// </summary>
+        /// <value>
+        /// The reservations.
+        /// </value>
+        public virtual ICollection<Reservation> Reservations { get; set; }
     }
 }

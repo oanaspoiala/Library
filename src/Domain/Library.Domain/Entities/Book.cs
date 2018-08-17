@@ -25,7 +25,7 @@ namespace Library.Domain.Entities
         /// <value>
         /// The gender.
         /// </value>
-        [ForeignKey("GenderId")]
+        [ForeignKey(nameof(GenderId))]
         public virtual Gender Gender { get; set; }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace Library.Domain.Entities
         /// <value>
         /// The author.
         /// </value>
-        [ForeignKey("AuthorId")]
+        [ForeignKey(nameof(AuthorId))]
         public virtual Author Author { get; set; }
 
         /// <summary>

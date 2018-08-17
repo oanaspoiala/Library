@@ -16,4 +16,8 @@
     <ProjectReference Include="..\Data\Library.Persistence\Library.Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="CommandRepository\" />
+  </ItemGroup>
+
 </Project>

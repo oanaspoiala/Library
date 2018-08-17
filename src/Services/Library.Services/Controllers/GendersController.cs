@@ -19,14 +19,12 @@ namespace Library.Services.Controllers
         /// <summary>
         /// Initializes a new instance of the <see cref="GendersController" /> class.
         /// </summary>
-        /// <param name="queryRepository">The query repository.</param>
-        /// <param name="commandRepository">The command repository.</param>
+        /// <param name="repository">The repository.</param>
         /// <param name="logger">The logger.</param>
         public GendersController(
-            IQueryRepository<Gender, Guid> queryRepository,
-            ICommandRepository<Gender, Guid> commandRepository,
+            IRepository<Gender, Guid> repository,
             ILogger<GendersController> logger)
-            : base(queryRepository, commandRepository, logger)
+            : base(logger, repository)
         {
         }
 

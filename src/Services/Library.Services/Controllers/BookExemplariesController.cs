@@ -11,11 +11,15 @@ namespace Library.Services.Controllers
     public class BookExemplariesController : ApiBaseController<BookExemplary, Guid>
     {
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BookExemplariesController"/> class.
+        /// </summary>
+        /// <param name="repository">The repository.</param>
+        /// <param name="logger">The logger.</param>
         public BookExemplariesController(
-            IQueryRepository<BookExemplary, Guid> queryRepository,
-            ICommandRepository<BookExemplary, Guid> commandRepository,
+            IRepository<BookExemplary, Guid> repository,
             ILogger<BookExemplariesController> logger)
-            : base(queryRepository, commandRepository, logger)
+            : base(logger, repository)
         {
         }
 

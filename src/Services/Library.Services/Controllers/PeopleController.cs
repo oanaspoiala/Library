@@ -15,16 +15,14 @@ namespace Library.Services.Controllers
     public class PeopleController : ApiBaseController<Person, Guid>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PeopleController"/> class.
+        /// Initializes a new instance of the <see cref="PeopleController" /> class.
         /// </summary>
-        /// <param name="readRepository">The read repository.</param>
-        /// <param name="writeRepository">The write repository.</param>
+        /// <param name="repository">The repository.</param>
         /// <param name="logger">The logger.</param>
         public PeopleController(
-            IQueryRepository<Person, Guid> readRepository,
-            ICommandRepository<Person, Guid> writeRepository,
+            IRepository<Person, Guid> repository,
             ILogger<PeopleController> logger
-            ): base(readRepository, writeRepository, logger)
+            ): base(logger, repository)
         { }
 
         [HttpPost]

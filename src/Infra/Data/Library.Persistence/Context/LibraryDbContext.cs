@@ -18,5 +18,7 @@ namespace Library.Persistence.Context
         public DbSet<BookExemplary> BookExemplaries { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<Loan> Loans { get; set; }
+        public DbSet<WearDegree> WearDegrees { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
     }
 }

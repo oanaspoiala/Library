@@ -7,15 +7,19 @@ using Microsoft.Extensions.Logging;
 
 namespace Library.Services.Controllers
 {
-    [Route("[controller]")]
+    [Route("v1/[controller]")]
     //[Authorize(Policy = "Authenticated")]
     public class AuthorsController : ApiBaseController<Author, Guid>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuthorsController"/> class.
+        /// </summary>
+        /// <param name="repository">The repository.</param>
+        /// <param name="logger">The logger.</param>
         public AuthorsController(
-            IQueryRepository<Author, Guid> queryRepository,
-            ICommandRepository<Author, Guid> commandRepository,
+            IRepository<Author, Guid> repository,
             ILogger<AuthorsController> logger)
-            : base(queryRepository, commandRepository, logger)
+            : base(logger, repository)
         {
         }
 

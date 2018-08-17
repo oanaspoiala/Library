@@ -1,6 +1,7 @@
 ﻿using System;
 using Library.Domain.Core.Interfaces;
 using Library.Domain.Entities;
+using Library.Repositories.BaseRepository;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Library.Repositories
@@ -11,23 +12,21 @@ namespace Library.Repositories
 
         public static IServiceCollection ConfigureLibraryBusiness(this IServiceCollection services)
         {
-            services.AddTransient<ICommandRepository<Book, Guid>, CommandRepositoryBase<Book, Guid>>();
-            services.AddTransient<IQueryRepository<Book, Guid>, BooksQueryRepository>();
+            services.AddTransient<IRepository<Book, Guid>, RepositoryBase<Book, Guid>>();
 
-            services.AddTransient<ICommandRepository<Author, Guid>, CommandRepositoryBase<Author, Guid>>();
-            services.AddTransient<IQueryRepository<Author, Guid>, AuthorsQueryRepository>();
+            services.AddTransient<IRepository<Author, Guid>, RepositoryBase<Author, Guid>>();
 
-            services.AddTransient<ICommandRepository<BookExemplary, Guid>, CommandRepositoryBase<BookExemplary, Guid>>();
-            services.AddTransient<IQueryRepository<BookExemplary, Guid>, BookExemplariesQueryRepository>();
+            services.AddTransient<IRepository<BookExemplary, Guid>, RepositoryBase<BookExemplary, Guid>>();
 
-            services.AddTransient<ICommandRepository<Gender, Guid>, CommandRepositoryBase<Gender, Guid>>();
-            services.AddTransient<IQueryRepository<Gender, Guid>, QueryRepositoryBase<Gender, Guid>>();
+            services.AddTransient<IRepository<Gender, Guid>, RepositoryBase<Gender, Guid>>();
 
-            services.AddTransient<ICommandRepository<Loan, Guid>, CommandRepositoryBase<Loan, Guid>>();
-            services.AddTransient<IQueryRepository<Loan, Guid>, LoansQueryRepository>();
+            services.AddTransient<IRepository<Loan, Guid>, RepositoryBase<Loan, Guid>>();
 
-            services.AddTransient<ICommandRepository<Person, Guid>, CommandRepositoryBase<Person, Guid>>();
-            services.AddTransient<IQueryRepository<Person, Guid>, QueryRepositoryBase<Person, Guid>>();
+            services.AddTransient<IRepository<Person, Guid>, RepositoryBase<Person, Guid>>();
+
+            services.AddTransient<IRepository<WearDegree, Guid>, RepositoryBase<WearDegree, Guid>>();
+
+            services.AddTransient<IRepository<Reservation, Guid>, RepositoryBase<Reservation, Guid>>();
 
             return services;
         }

@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Library.Domain.Core.Entities;
 using Library.Domain.Core.Interfaces;
 using Library.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace Library.Repositories
+namespace Library.Repositories.BaseRepository
 {
     /// <inheritdoc />
     /// <summary>
@@ -17,16 +18,16 @@ namespace Library.Repositories
     public class QueryRepositoryBase<T, TId> : IQueryRepository<T, TId> where T: EntityWithId<TId>
     {
         protected readonly LibraryDbContext Context;
-        protected readonly DbSet<T> DataSet;
+        private readonly DbSet<T> _dataSet;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="QueryRepositoryBase{T, TId}"/> class.
         /// </summary>
         /// <param name="context">The context.</param>
-        public QueryRepositoryBase(LibraryDbContext context)
+        protected QueryRepositoryBase(LibraryDbContext context)
         {
             Context = context;
-            DataSet = Context.Set<T>();
+            _dataSet = Context.Set<T>();
         }
 
         /// <summary>
@@ -36,7 +37,7 @@ namespace Library.Repositories
         /// <exception cref="NotImplementedException"></exception>
         public virtual async Task<ICollection<T>> GetAll()
         {
-            return await DataSet.ToListAsync();
+            return await _dataSet.ToListAsync();
         }
 
         /// <summary>
@@ -47,12 +48,12 @@ namespace Library.Repositories
         /// <exception cref="NotImplementedException"></exception>
         public virtual async Task<T> GetById(TId id)
         {
-            return await DataSet.FindAsync(id);
+            return await _dataSet.FindAsync(id);
         }
 
         public async Task<bool> Any(TId id)
         {
-            return await DataSet.AnyAsync(i => i.Id.Equals(id));
+            return await _dataSet.AnyAsync(i => i.Id.Equals(id));
         }
     }
 }

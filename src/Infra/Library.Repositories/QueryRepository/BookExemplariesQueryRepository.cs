@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Library.Domain.Entities;
 using Library.Persistence.Context;
+using Library.Repositories.BaseRepository;
 using Microsoft.EntityFrameworkCore;
 
-namespace Library.Repositories
+namespace Library.Repositories.QueryRepository
 {
-    public class BookExemplariesQueryRepository : QueryRepositoryBase<BookExemplary, Guid>
+    public abstract class BookExemplariesQueryRepository : QueryRepositoryBase<BookExemplary, Guid>
     {
-        public BookExemplariesQueryRepository(LibraryDbContext context)
+        protected BookExemplariesQueryRepository(LibraryDbContext context)
             : base(context)
         { }
 
