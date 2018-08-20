@@ -7,16 +7,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Library.Repositories.QueryRepository
 {
-    public abstract class AuthorsQueryRepository : RepositoryBase<Author, Guid>
+    public abstract class GendersQueryRepository : RepositoryBase<Gender, Guid>
     {
-        protected AuthorsQueryRepository(LibraryDbContext context)
-            : base(context)
+        protected GendersQueryRepository(LibraryDbContext context) : base(context)
         {
         }
 
-        public async Task<Author> GetById(Guid id)
+        public async Task<Gender> GetById(Guid id)
         {
-            return await Context.Authors
+            return await Context.Genders
                 .Include(x => x.Books)
                 .FirstOrDefaultAsync(x => x.Id == id);
         }

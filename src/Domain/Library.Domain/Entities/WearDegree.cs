@@ -8,6 +8,7 @@ namespace Library.Domain.Entities
     public class WearDegree : EntityWithId<Guid>
     {
         [Display(Name = @"Data modificarii statusului")]
+        [DataType(DataType.Date)]
         public DateTime TimeStamp { get; set; }
 
         public int ValueStatus { get; set; }

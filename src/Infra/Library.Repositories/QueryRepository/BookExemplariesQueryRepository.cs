@@ -8,13 +8,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Library.Repositories.QueryRepository
 {
-    public abstract class BookExemplariesQueryRepository : QueryRepositoryBase<BookExemplary, Guid>
+    public abstract class BookExemplariesQueryRepository : RepositoryBase<BookExemplary, Guid>
     {
         protected BookExemplariesQueryRepository(LibraryDbContext context)
             : base(context)
         { }
 
-        public override async Task<ICollection<BookExemplary>> GetAll()
+        public async Task<ICollection<BookExemplary>> GetAll()
         {
             var result = await Context.BookExemplaries
                 .Include(b => b.Book)
@@ -24,7 +24,7 @@ namespace Library.Repositories.QueryRepository
             return result;
         }
 
-        public override async Task<BookExemplary> GetById(Guid id)
+        public async Task<BookExemplary> GetById(Guid id)
         {
             return await Context.BookExemplaries
                 .Include(b => b.Book)

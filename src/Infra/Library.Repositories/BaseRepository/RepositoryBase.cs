@@ -16,8 +16,8 @@ namespace Library.Repositories.BaseRepository
     // ReSharper disable once ClassNeverInstantiated.Global
     public class RepositoryBase<T, TId> : IRepository<T, TId> where T : EntityWithId<TId>
     {
-        private readonly LibraryDbContext _context;
-        private readonly DbSet<T> _dataSet;
+        public readonly LibraryDbContext Context;
+        private  readonly DbSet<T> _dataSet;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RepositoryBase{T, TId}"/> class.
@@ -26,8 +26,8 @@ namespace Library.Repositories.BaseRepository
         /// <param name="dataSet">The data set.</param>
         public RepositoryBase(LibraryDbContext context)
         {
-            _context = context;
-            _dataSet = _context.Set<T>();
+            Context = context;
+            _dataSet = Context.Set<T>();
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Library.Repositories.BaseRepository
         public async Task<TId> Add(T item)
         {
             await _dataSet.AddAsync(item);
-            await _context.SaveChangesAsync();
+            await Context.SaveChangesAsync();
             return item.Id;
         }
 
@@ -50,7 +50,7 @@ namespace Library.Repositories.BaseRepository
         public async Task Update(T item)
         {
             _dataSet.Update(item);
-            await _context.SaveChangesAsync();
+            await Context.SaveChangesAsync();
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Library.Repositories.BaseRepository
         {
             var item = await _dataSet.FindAsync(id);
             _dataSet.Remove(item);
-            await _context.SaveChangesAsync();
+            await Context.SaveChangesAsync();
         }
 
         /// <summary>

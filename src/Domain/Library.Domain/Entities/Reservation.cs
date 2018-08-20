@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Library.Domain.Core.Entities;
 
@@ -11,10 +12,13 @@ namespace Library.Domain.Entities
         [ForeignKey(nameof(BookExemplaryId))]
         public virtual BookExemplary BookExemplary { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime FromDate { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime ToDate { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime ReservationDate { get; set; }
 
         public Guid PersonId { get; set; }

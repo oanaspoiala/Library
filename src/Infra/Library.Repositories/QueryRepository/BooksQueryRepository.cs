@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Library.Repositories.QueryRepository
 {
-    public abstract class BooksQueryRepository : QueryRepositoryBase<Book, Guid>
+    public abstract class BooksQueryRepository : RepositoryBase<Book, Guid>
     {
         protected BooksQueryRepository(LibraryDbContext context)
             :base(context)
@@ -19,9 +19,11 @@ namespace Library.Repositories.QueryRepository
         /// </summary>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public override async Task<ICollection<Book>> GetAll()
+        public async Task<ICollection<Book>> GetAll()
         {
-            return await Context.Books.Include(b => b.Author).Include(b => b.Gender).ToListAsync();
+            return await Context.Books.Include(b => b.Author)
+                .Include(b => b.Gender)
+                .ToListAsync();
         }
 
         /// <summary>
@@ -30,9 +32,10 @@ namespace Library.Repositories.QueryRepository
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public override async Task<Book> GetById(Guid id)
+        public async Task<Book> GetById(Guid id)
         {
-            return await Context.Books.Include(b => b.Author).Include(b => b.Gender)
+            return await Context.Books.Include(b => b.Author)
+                .Include(b => b.Gender)
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
     }

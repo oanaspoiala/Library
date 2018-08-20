@@ -8,24 +8,26 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Library.Repositories.QueryRepository
 {
-    public abstract class LoansQueryRepository : QueryRepositoryBase<Loan, Guid>
+    public abstract class LoansQueryRepository : RepositoryBase<Loan, Guid>
     {
         protected LoansQueryRepository(LibraryDbContext context)
             : base(context)
         { }
 
-        public override async Task<ICollection<Loan>> GetAll()
+        public async Task<ICollection<Loan>> GetAll()
         {
-            return await Context.Loans.Include(b => b.Person).Include(b => b.BookExemplary)
+            return await Context.Loans.Include(b => b.Person)
+                .Include(b => b.BookExemplary)
                 .Include(x => x.BookExemplary.Book)
                 .Include(x => x.BookExemplary.Book.Gender)
                 .Include(x => x.BookExemplary.Book.Author)
                 .ToListAsync();
         }
 
-        public override async Task<Loan> GetById(Guid id)
+        public async Task<Loan> GetById(Guid id)
         {
-            return await Context.Loans.Include(b => b.Person).Include(b => b.BookExemplary)
+            return await Context.Loans.Include(b => b.Person)
+                .Include(b => b.BookExemplary)
                 .Include(x => x.BookExemplary.Book)
                 .Include(x => x.BookExemplary.Book.Gender)
                 .Include(x => x.BookExemplary.Book.Author)

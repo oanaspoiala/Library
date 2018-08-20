@@ -100,6 +100,48 @@ namespace Library.Persistence.Context
 
             apContext.Loans.AddRange(loans);
             apContext.SaveChanges();
+
+            var reservation = new List<Reservation>
+            {
+                new Reservation
+                {
+                    BookExemplary = bookExemplaries[0],
+                    FromDate = new DateTime(2017, 12, 10),
+                    ToDate = new DateTime(2017, 12, 17),
+                    Person = people[0],
+                    ReservationDate = new DateTime(2017, 12, 05)
+                },
+
+                new Reservation
+                {
+                    BookExemplary = bookExemplaries[1],
+                    FromDate = new DateTime(2018, 02, 10),
+                    ToDate = new DateTime(2018, 02, 17),
+                    Person = people[0],
+                    ReservationDate = new DateTime(2017, 12, 15)
+                }
+            };
+            apContext.Reservations.AddRange(reservation);
+            apContext.SaveChanges();
+
+            var wearDegree = new List<WearDegree>
+            {
+                new WearDegree
+                {
+                    BookExemplary = bookExemplaries[0],
+                    TimeStamp = new DateTime(2016, 04, 16),
+                    ValueStatus = 10
+                },
+
+                new WearDegree
+                {
+                    BookExemplary = bookExemplaries[1],
+                    TimeStamp = new DateTime(2016, 04, 28),
+                    ValueStatus = 9
+                }
+            };
+            apContext.WearDegrees.AddRange(wearDegree);
+            apContext.SaveChanges();
         }
     }
 }
